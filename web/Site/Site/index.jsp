@@ -5,10 +5,11 @@
 <%@include file="padroes/cabecalho.jsp" %>
 
 <%  Upload upload = new Upload();
-    upload.setFolderUpload("../../Fotos");
+    upload.setFolderUpload("Fotos");
 
     Grupo obj = new Grupo();
     GrupoDAO dao = new GrupoDAO();
+    Membro objm = new Membro();
 
     if (request.getMethod().equals("POST")) {
         if (upload.formProcess(getServletContext(), request)) {
@@ -27,6 +28,8 @@
 
             Boolean resultado = dao.incluir(obj);
             if (resultado) {
+                
+                
             } else {
                 //Se a adição não pode ser concluida com sucesso
             }
