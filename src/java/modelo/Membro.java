@@ -32,6 +32,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Membro.findAll", query = "SELECT m FROM Membro m"),
     @NamedQuery(name = "Membro.findbyusuidFilter", query = "SELECT l FROM Membro l where l.usucodigo.usucodigo = :filtro"),
+    @NamedQuery(name = "Membro.findbygruidFilter", query = "SELECT l FROM Membro l where l.grucodigo.grucodigo = :filtro"),
     @NamedQuery(name = "Membro.findFilter", query = "SELECT h FROM Membro h where LOWER(h.memdata) like :filtro or LOWER(h.usucodigo.usunick) like :filtro or LOWER(h.grucodigo.grunome) like :filtro")})
 public class Membro implements Serializable {
 

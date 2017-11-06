@@ -40,33 +40,35 @@
     }
     if (request.getMethod().equals("POST")) {
         if (upload.formProcess(getServletContext(), request)) {
-            Usuario obj = new Usuario();
-            obj.setUsunick(upload.getForm().get("CtxtNick").toString());
-            obj.setUsulogin(upload.getForm().get("CtxtLogin").toString());
-            obj.setUsusenha(upload.getForm().get("CtxtSenha").toString());
-            if (upload.getFiles().size() != 1) {
-                obj.setUsuimg("empty.jpg");
-            } else {
-                obj.setUsuimg(upload.getFiles().get(0));
-            }
-            if (obj == null) {
-                response.sendRedirect("../inicial/index.jsp");
-                return;
-            } else {
-                int y = 0;
-                for (y = dao.Max(); y > 0; y--) {
-                    Usuario obj2 = dao.buscarPorChavePrimaria(y);
-                    if (obj2 != null) {
-                        if (obj.getUsulogin().equals(obj2.getUsulogin())) {
-                            msg2 = "Login já existente";
-                            y=0;
+            if (upload.getForm().get("CtxtSenha").toString().equals(upload.getForm().get("CtxtCSenha").toString())) {
+                Usuario obj = new Usuario();
+                obj.setUsunick(upload.getForm().get("CtxtNick").toString());
+                obj.setUsulogin(upload.getForm().get("CtxtLogin").toString());
+                obj.setUsusenha(upload.getForm().get("CtxtSenha").toString());
+                if (upload.getFiles().size() != 1) {
+                    obj.setUsuimg("empty.jpg");
+                } else {
+                    obj.setUsuimg(upload.getFiles().get(0));
+                }
+                if (obj == null) {
+                    response.sendRedirect("../inicial/index.jsp");
+                    return;
+                } else {
+                    int y = 0;
+                    for (y = dao.Max(); y > 0; y--) {
+                        Usuario obj2 = dao.buscarPorChavePrimaria(y);
+                        if (obj2 != null) {
+                            if (obj.getUsulogin().equals(obj2.getUsulogin())) {
+                                msg2 = "Login já existente";
+                                y = 0;
+                            }
                         }
                     }
-                }
-                if(y == -1){
-                    
-                }else{
-                dao.incluir(obj);
+                    if (y == -1) {
+
+                    } else {
+                        dao.incluir(obj);
+                    }
                 }
             }
         }
@@ -476,6 +478,12 @@
                                                     Senha<span class="req">*</span>
                                                 </label>
                                                 <input type="password"required autocomplete="off" name="CtxtSenha"/>
+                                            </div>
+                                            <div class="field-wrap">
+                                                <label>
+                                                    Confirmar Senha<span class="req">*</span>
+                                                </label>
+                                                <input type="password"required autocomplete="off" name="CtxtCSenha"/>
                                             </div>
 
                                             <div class="field-wrap col-sm-12 text-center custom-img">

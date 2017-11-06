@@ -60,6 +60,7 @@
 
 <!-- Stats-Number-Scroller-Animation-JavaScript -->
 <script src="js/waypoints.min.js"></script>
+<script src="js/index.js"></script>
 <script src="js/counterup.min.js"></script>
 <script>
     jQuery(document).ready(function ($) {

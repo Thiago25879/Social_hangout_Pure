@@ -5,13 +5,14 @@
 <%@page import="dao.UsuarioDAO"%>
 <%@page import="modelo.Usuario"%>
 <head>
-	<title>Farm an Agriculture Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+	<title>Social Hangout</title>
 	<!-- custom-theme -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<!-- //custom-theme -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/custom-img.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- //custom-theme -->
 	<!-- font-awesome-icons -->
 	<link href="css/font-awesome.css" rel="stylesheet">
@@ -64,16 +65,17 @@ listam = memdao.listarporusuid(usuario.getUsucodigo());
 						<div id="m_nav_container" class="m_nav wthree_bg">
 							<nav class="menu menu--sebastian">
 								<ul id="m_nav_list" class="m_nav menu__list">
-									<li class="m_nav_item" id="m_nav_item_1"> <a href="index.jsp" class="link link--kumya"><i class="fa fa-group" aria-hidden="true"></i><span data-letters="Grupos">Grupos</span></a></li>
-									<li class="m_nav_item" id="m_nav_item_1"> <a href="eventos.jsp" class="link link--kumya"><i class="glyphicon glyphicon-glass" aria-hidden="true"></i><span data-letters="Eventos">Eventos</span></a></li>
-                                                                        <li class="m_nav_item dropdown" id="moble_nav_item_2">
-										<a href="#" class="dropdown-toggle link link--kumya" data-toggle="dropdown"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><span data-letters="Convites">Convites <b class="caret"></b></a>
+									<li class="m_nav_item dropdown" id="moble_nav_item_2">
+										<a href="#" class="dropdown-toggle link link--kumya" data-toggle="dropdown"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Convites <b class="caret"></b></a>
 
 										<ul class="dropdown-menu agile_short_dropdown">
 											<li><a href="convitesg.jsp">Grupos</a></li>
 											<li><a href="convitese.jsp">Eventos</a></li>
 										</ul>
 									</li>
+                                                                        <li class="m_nav_item" id="m_nav_item_1"> <a href="index.jsp" class="link link--kumya"><i class="fa fa-group" aria-hidden="true"></i>Grupos</span></a></li>
+                                                                        <li class="m_nav_item" id="m_nav_item_1"> <a href="eventos.jsp" class="link link--kumya"><i class="glyphicon glyphicon-glass" aria-hidden="true"></i>Eventos</span></a></li>
+                                                                        
 									</ul>
 							</nav>
 						</div>

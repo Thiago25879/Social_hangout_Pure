@@ -26,6 +26,10 @@ public class MembroDAO extends GenericDAO<Membro, Integer>{
         
         return em.createNamedQuery("Membro.findbyusuidFilter").setParameter("filtro", filtro ).getResultList();
     }
+    public List<Membro> listarporgruid(Integer filtro) throws Exception{
+        
+        return em.createNamedQuery("Membro.findbygruidFilter").setParameter("filtro", filtro ).getResultList();
+    }
     
     
 }

@@ -10,9 +10,8 @@
         if (upload.formProcess(getServletContext(), request)) {
             obj = usuario;
             obj.setUsunick(upload.getForm().get("nick").toString());
-            obj.setUsulogin(upload.getForm().get("login").toString());
             if(!upload.getForm().get("senhaant").toString().isEmpty() || !upload.getForm().get("senhanov").toString().isEmpty()){
-                if(upload.getForm().get("senhaant").toString().equals(usuario.getUsusenha().toString()) ){
+                if(upload.getForm().get("senhaant").toString().equals(usuario.getUsusenha().toString()) &&  upload.getForm().get("senhanov").toString().equals(upload.getForm().get("senhaconf").toString())){
                     obj.setUsusenha(upload.getForm().get("senhanov").toString());
                 }
             }
@@ -96,11 +95,11 @@
         <div class="col-md-6 wthree_contact_left_grid">
             <input type="text" name="nick" placeholder="Apelido" required value="<%=usuario.getUsunick()%>">
 
-            <input type="text" name="login" placeholder="Login " required value="<%=usuario.getUsulogin()%>">
+            <input class="password-custom" type="password" name="senhanov" placeholder="Digite a nova senha" >
         </div>
         <div class="col-md-6 wthree_contact_left_grid">
             <input class="password-custom" type="password" name="senhaant" placeholder="Digite a senha antiga" >
-            <input class="password-custom" type="password" name="senhanov" placeholder="Digite a nova senha" >
+            <input class="password-custom" type="password" name="senhaconf" placeholder="Digite novamente a nova senha" >
         </div>
         <div class="clearfix"> </div>
         <br>
