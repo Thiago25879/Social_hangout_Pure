@@ -39,6 +39,7 @@
                     <tr>
                         <th>Código</th>
                         <th>Data</th>
+                        <th>Ativo</th>
                         <th>Grupo</th>
                         <th>Usuário</th>
                         <th>Opções</th>
@@ -48,6 +49,7 @@
                     <tr>
                         <th>Código</th>
                         <th>Data</th>
+                        <th>Ativo</th>
                         <th>Grupo</th>
                         <th>Usuário</th>
                         <th>Opções</th>

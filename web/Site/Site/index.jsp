@@ -35,6 +35,7 @@
             if (resultado) {
                 objm.setGrucodigo(obj);
                 objm.setUsucodigo(usuario);
+                objm.setMemativo(true);
 
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();

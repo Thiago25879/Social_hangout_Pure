@@ -23,4 +23,9 @@ public class DecisaoDAO extends GenericDAO<Decisao, Integer>{
         return em.createNamedQuery("Decisao.findFilter").setParameter("filtro", "%" + filtro + "%").getResultList();
     }
     
+    public List<Decisao> listarporeveid(Integer filtro) throws Exception{
+        
+        return em.createNamedQuery("Decisao.findbyeveidFilter").setParameter("filtro", filtro ).getResultList();
+    }
+    
 }

@@ -33,10 +33,11 @@
 <!-- //footer -->
 <!-- js -->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
 <!-- //js -->
 <script src="js/jquery.vide.min.js"></script>
 <script src="js/responsiveslides.min.js"></script>
+
+<script type="text/javascript" src="js/custom.js"></script>
 <script>
     // You can also use "$(window).load(function() {"
     $(function () {

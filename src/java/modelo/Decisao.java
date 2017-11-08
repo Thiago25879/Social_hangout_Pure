@@ -28,6 +28,7 @@ import javax.persistence.Table;
 @Table(name = "decisao")
 @NamedQueries({
     @NamedQuery(name = "Decisao.findAll", query = "SELECT d FROM Decisao d"),
+    @NamedQuery(name = "Decisao.findbyeveidFilter", query = "SELECT l FROM Decisao l where l.evecodigo.evecodigo = :filtro"),
     @NamedQuery(name = "Decisao.findFilter", query = "SELECT h FROM Decisao h where LOWER(h.dectitulo) like :filtro or LOWER(h.decdesc) like :filtro or LOWER(h.evecodigo.evenome) like :filtro")})
 public class Decisao implements Serializable {
 

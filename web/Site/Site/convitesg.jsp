@@ -16,6 +16,7 @@
                 Membro membro = new Membro();
                 membro.setGrucodigo(conv.getGrucodigo());
                 membro.setUsucodigo(usuario);
+                membro.setMemativo(true);
 
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();

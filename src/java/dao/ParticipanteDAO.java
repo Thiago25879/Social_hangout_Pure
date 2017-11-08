@@ -22,5 +22,9 @@ public class ParticipanteDAO extends GenericDAO<Participante, Integer>{
         
         return em.createNamedQuery("Participante.findFilter").setParameter("filtro", "%" + filtro + "%").getResultList();
     }
+    public List<Participante> listarporusuid(Integer filtro) throws Exception{
+        
+        return em.createNamedQuery("Participante.findbyusuidFilter").setParameter("filtro", filtro ).getResultList();
+    }
     
 }

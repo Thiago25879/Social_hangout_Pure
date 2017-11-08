@@ -1,15 +1,26 @@
 
+<%@page import="dao.EventoDAO"%>
+<%@page import="modelo.Participante"%>
+<%@page import="dao.ParticipanteDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.ConviteevDAO"%>
 <%@page import="modelo.Conviteev"%>
 <%@include file="padroes/cabecalho.jsp" %>
 <%  ConviteevDAO conevdao = new ConviteevDAO();
+    ParticipanteDAO pdao = new ParticipanteDAO();
+    Participante part = new Participante();
+    EventoDAO edao = new EventoDAO();
+    Membro membro = new Membro();
+    MembroDAO mdao = new MembroDAO();
     if (request.getParameter("code") != null) {
         Conviteev conv = conevdao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("code")));;
         int X = Integer.parseInt(request.getParameter("action"));
         switch (X) {
             case 1:
                 conv.setConevresposta("vou");
+                part.setEvecodigo(edao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("code"))));
+                part.setMemcodigo(mdao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("group"))));
+                pdao.incluir(part);
                 break;
             case 2:
                 conv.setConevresposta("talvez");
@@ -26,7 +37,7 @@
     List<Conviteev> listaconev = new ArrayList<Conviteev>();
     listaconevall = conevdao.listar();
     for (Conviteev itemcon : listaconevall) {
-        if (itemcon.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo() && itemcon.getConevresposta() != "vou" && itemcon.getConevresposta() != "nao") {
+        if (itemcon.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo() && itemcon.getConevresposta() != "vou" && itemcon.getConevresposta() != "nao" && itemcon.getMemcodigo().getMemativo() == true) {
             listaconev.add(itemcon);
         }
     }
@@ -49,9 +60,9 @@
                         <h4><%=item.getEvecodigo().getEvenome()%></h4>
                         <p><%=item.getEvecodigo().getEvedesc()%></p>
                         <h4>
-                            <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=1"><span class="label label-success">Vou</span></a>
-                            <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=2"><span class="label label-info">Talvez</span></a>
-                            <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=3"><span class="label label-danger">Não vou</span></a>
+                            <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=1&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-success">Vou</span></a>
+                            <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=2&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-info">Talvez</span></a>
+                            <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=3&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-danger">Não vou</span></a>
                         </h4>
                     </div>
                 </div>
