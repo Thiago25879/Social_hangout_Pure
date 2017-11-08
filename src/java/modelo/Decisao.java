@@ -22,7 +22,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Cliente
+ * @author thiago
  */
 @Entity
 @Table(name = "decisao")
@@ -37,12 +37,14 @@ public class Decisao implements Serializable {
     @Basic(optional = false)
     @Column(name = "deccodigo")
     private Integer deccodigo;
-    @Column(name = "dectitulo")
-    private String dectitulo;
     @Column(name = "decdesc")
     private String decdesc;
+    @Column(name = "dectitulo")
+    private String dectitulo;
     @OneToMany(mappedBy = "deccodigo")
     private List<Opcao> opcaoList;
+    @OneToMany(mappedBy = "deccodigo")
+    private List<Voto> votoList;
     @JoinColumn(name = "evecodigo", referencedColumnName = "evecodigo")
     @ManyToOne
     private Evento evecodigo;
@@ -62,14 +64,6 @@ public class Decisao implements Serializable {
         this.deccodigo = deccodigo;
     }
 
-    public String getDectitulo() {
-        return dectitulo;
-    }
-
-    public void setDectitulo(String dectitulo) {
-        this.dectitulo = dectitulo;
-    }
-
     public String getDecdesc() {
         return decdesc;
     }
@@ -78,12 +72,28 @@ public class Decisao implements Serializable {
         this.decdesc = decdesc;
     }
 
+    public String getDectitulo() {
+        return dectitulo;
+    }
+
+    public void setDectitulo(String dectitulo) {
+        this.dectitulo = dectitulo;
+    }
+
     public List<Opcao> getOpcaoList() {
         return opcaoList;
     }
 
     public void setOpcaoList(List<Opcao> opcaoList) {
         this.opcaoList = opcaoList;
+    }
+
+    public List<Voto> getVotoList() {
+        return votoList;
+    }
+
+    public void setVotoList(List<Voto> votoList) {
+        this.votoList = votoList;
     }
 
     public Evento getEvecodigo() {
@@ -116,7 +126,7 @@ public class Decisao implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.Decisao[ deccodigo=" + deccodigo + " ]";
+        return "modelo.Decisao[ deccodigo=" + deccodigo + " ]";
     }
     
 }

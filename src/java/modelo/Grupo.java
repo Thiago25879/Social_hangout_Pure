@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Cliente
+ * @author thiago
  */
 @Entity
 @Table(name = "grupo")
@@ -36,10 +36,10 @@ public class Grupo implements Serializable {
     @Basic(optional = false)
     @Column(name = "grucodigo")
     private Integer grucodigo;
-    @Column(name = "grunome")
-    private String grunome;
     @Column(name = "gruimg")
     private String gruimg;
+    @Column(name = "grunome")
+    private String grunome;
     @OneToMany(mappedBy = "grucodigo")
     private List<Convitegr> convitegrList;
     @OneToMany(mappedBy = "grucodigo")
@@ -62,20 +62,20 @@ public class Grupo implements Serializable {
         this.grucodigo = grucodigo;
     }
 
-    public String getGrunome() {
-        return grunome;
-    }
-
-    public void setGrunome(String grunome) {
-        this.grunome = grunome;
-    }
-
     public String getGruimg() {
         return gruimg;
     }
 
     public void setGruimg(String gruimg) {
         this.gruimg = gruimg;
+    }
+
+    public String getGrunome() {
+        return grunome;
+    }
+
+    public void setGrunome(String grunome) {
+        this.grunome = grunome;
     }
 
     public List<Convitegr> getConvitegrList() {
@@ -124,7 +124,7 @@ public class Grupo implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.Grupo[ grucodigo=" + grucodigo + " ]";
+        return "modelo.Grupo[ grucodigo=" + grucodigo + " ]";
     }
     
 }

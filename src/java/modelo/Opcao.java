@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,11 +17,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
  *
- * @author Cliente
+ * @author thiago
  */
 @Entity
 @Table(name = "opcao")
@@ -45,6 +47,8 @@ public class Opcao implements Serializable {
     @JoinColumn(name = "parcodigo", referencedColumnName = "parcodigo")
     @ManyToOne
     private Participante parcodigo;
+    @OneToMany(mappedBy = "opccodigo")
+    private List<Voto> votoList;
 
     public Opcao() {
     }
@@ -93,6 +97,14 @@ public class Opcao implements Serializable {
         this.parcodigo = parcodigo;
     }
 
+    public List<Voto> getVotoList() {
+        return votoList;
+    }
+
+    public void setVotoList(List<Voto> votoList) {
+        this.votoList = votoList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -115,7 +127,7 @@ public class Opcao implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.Opcao[ opccodigo=" + opccodigo + " ]";
+        return "modelo.Opcao[ opccodigo=" + opccodigo + " ]";
     }
     
 }

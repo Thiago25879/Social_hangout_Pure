@@ -22,13 +22,14 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Cliente
+ * @author thiago
  */
 @Entity
 @Table(name = "evento")
 @NamedQueries({
     @NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e"),
     @NamedQuery(name = "Evento.findFilter", query = "SELECT h FROM Evento h where LOWER(h.evenome) like :filtro or LOWER(h.evedesc) like :filtro  or LOWER(h.grucodigo.grunome) like :filtro"),
+    @NamedQuery(name = "Evento.findbyeveidFilter", query = "SELECT l FROM Evento l where l.grucodigo.grucodigo = :filtro"),
     @NamedQuery(name = "Evento.findImg", query = "SELECT n FROM Evento n where LOWER(n.evenome) like :filtro")})
 public class Evento implements Serializable {
 
@@ -38,12 +39,12 @@ public class Evento implements Serializable {
     @Basic(optional = false)
     @Column(name = "evecodigo")
     private Integer evecodigo;
-    @Column(name = "evenome")
-    private String evenome;
     @Column(name = "evedesc")
     private String evedesc;
     @Column(name = "eveimg")
     private String eveimg;
+    @Column(name = "evenome")
+    private String evenome;
     @JoinColumn(name = "grucodigo", referencedColumnName = "grucodigo")
     @ManyToOne
     private Grupo grucodigo;
@@ -69,14 +70,6 @@ public class Evento implements Serializable {
         this.evecodigo = evecodigo;
     }
 
-    public String getEvenome() {
-        return evenome;
-    }
-
-    public void setEvenome(String evenome) {
-        this.evenome = evenome;
-    }
-
     public String getEvedesc() {
         return evedesc;
     }
@@ -91,6 +84,14 @@ public class Evento implements Serializable {
 
     public void setEveimg(String eveimg) {
         this.eveimg = eveimg;
+    }
+
+    public String getEvenome() {
+        return evenome;
+    }
+
+    public void setEvenome(String evenome) {
+        this.evenome = evenome;
     }
 
     public Grupo getGrucodigo() {
@@ -147,7 +148,7 @@ public class Evento implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.Evento[ evecodigo=" + evecodigo + " ]";
+        return "modelo.Evento[ evecodigo=" + evecodigo + " ]";
     }
     
 }

@@ -1,0 +1,22 @@
+.custom-mid{
+    padding: 0em 0em !important;
+}
+.pos-mid{
+    width: 75%;
+position: fixed;
+left: 50%;
+margin-left: -37.5%;
+}
+
+.green-filter{
+    background: rgba(76, 175, 80, 0.3)
+}
+.blue-filter{
+    
+}
+.red-filter{
+    
+}
+.none-filter{
+    
+}

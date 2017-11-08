@@ -19,7 +19,7 @@
 
         <div class="center-pad grid_3 grid_5">
             <h1><a class="label label-default grp-btn" href="#">Novo Membro</a>
-                <a class="label label-default grp-btn" href="#">Eventos</a>
+                <a class="label label-default grp-btn" href="geventos.jsp?code=<%=item2.getGrucodigo()%>">Eventos</a>
                 <a class="label label-default grp-btn" href="#">Novo Evento</a></h1>
         </div>
 

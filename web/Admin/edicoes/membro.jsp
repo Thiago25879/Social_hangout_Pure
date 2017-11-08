@@ -20,6 +20,12 @@
         MembroDAO dao = new MembroDAO();
         obj.setMemcodigo(Integer.parseInt(request.getParameter("txtCodigo")));
         obj.setMemdata(request.getParameter("txtData"));
+        if(request.getParameter("txtAtivo") == null){
+            obj.setMemativo(false);
+        }else{
+            obj.setMemativo(true);
+        }
+
         Grupo grupo = new Grupo();
         grupo.setGrucodigo(Integer.parseInt(request.getParameter("txtGrupo")));
         obj.setGrucodigo(grupo);
@@ -72,6 +78,11 @@
             <div class="form-group">
                 <label>Data de inclusão</label>
                 <input class="form-control" type="date" name="txtData" required value="<%=obj.getMemdata()%>" />
+            </div>
+            
+            <div class="form-group">
+                <label>Ativo</label>
+                <input class="form-control" type="checkbox" name="txtAtivo" value="true" <%if(obj.getMemativo() == true){%> checked <%}%> />
             </div>
 
             <div class="form-group">

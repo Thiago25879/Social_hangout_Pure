@@ -23,4 +23,13 @@ public class ConviteevDAO extends GenericDAO<Conviteev, Integer> {
         return em.createNamedQuery("Conviteev.findFilter").setParameter("filtro", "%" + filtro + "%").getResultList();
     }
     
+    public List<Conviteev> listarpormemid(Integer filtro) throws Exception{
+        
+        return em.createNamedQuery("Conviteev.findbymemidFilter").setParameter("filtro", filtro ).getResultList();
+    }
+    public List<Conviteev> listarporgruid(Integer filtro) throws Exception{
+        
+        return em.createNamedQuery("Conviteev.findbymemidFilter").setParameter("filtro", filtro ).getResultList();
+    }
+    
 }

@@ -27,4 +27,9 @@ public class EventoDAO extends GenericDAO<Evento, Integer>{
         return em.createNamedQuery("Evento.findImg").setParameter("filtro", "%" + filtro + "%").getResultList();
     }
     
+    public List<Evento> listarbyEve(Integer filtro) throws Exception{
+        
+        return em.createNamedQuery("Evento.findbyeveidFilter").setParameter("filtro",filtro).getResultList();
+    }    
+            
 }

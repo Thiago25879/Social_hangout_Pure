@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Cliente
+ * @author thiago
  */
 @Entity
 @Table(name = "convitegr")
@@ -105,7 +105,7 @@ public class Convitegr implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.Convitegr[ congrcodigo=" + congrcodigo + " ]";
+        return "modelo.Convitegr[ congrcodigo=" + congrcodigo + " ]";
     }
     
 }

@@ -1,70 +1,67 @@
 
-<%@page import="modelo.Decisao"%>
+<%@page import="modelo.Voto"%>
 <%@page import="java.util.List"%>
-<%@page import="dao.DecisaoDAO"%>
+<%@page import="dao.VotoDAO"%>
 <%@include file="../padroes/cabecalho_filtro.jsp" %>
 
 
 <%
-    DecisaoDAO dao = new DecisaoDAO();
-    List<Decisao> lista = null;
+    VotoDAO dao = new VotoDAO();
+    List<Voto> lista = null;
     //verifico se é escluir
-    if (request.getParameter("deccodigo") != null) {
-        Decisao obj = dao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("deccodigo")));
-        if (obj != null) {
-            Boolean funcionou = false;
-            try {
-                funcionou = dao.excluir(obj);
-            } catch (IllegalStateException ISE) {
-%><a id='erros' data-toggle="modal" data-target="#erro"></a><%
+    if (request.getParameter("votcodigo") != null) {
+        Voto obj = dao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("votcodigo")));
+        if (obj != null) {Boolean funcionou = false;
+            try{
+            funcionou = dao.excluir(obj);
+            }catch(IllegalStateException ISE){
+                %><a id='erros' data-toggle="modal" data-target="#erro"></a><%
             }
             if (funcionou) {
                 //aqui depois vai ter uma janela
             }
         }
     }
-    if (request.getParameter("filtro") != null) {
+    if(request.getParameter("filtro") != null){
         lista = dao.listar(request.getParameter("filtro").toLowerCase());
-    } else {
+    }else{
         lista = dao.listar();
     }
 %>
 
 <div class="card mb-3">
     <div class="card-header">
-        <i class="fa fa-table"></i> Tabela de decisões</div>
+        <i class="fa fa-table"></i> Tabela de votos</div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Código</th>
-                        <th>Título</th>
-                        <th>Descrição</th>
-                        <th>Evento</th>
+                        <th>Membros</th>
+                        <th>Decisões</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>Código</th>
-                        <th>Título</th>
-                        <th>Descrição</th>
-                        <th>Evento</th>
+                        <th>Membros</th>
+                        <th>Decisões</th>
                         <th>Opções</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     <%
-                        for (Decisao item : lista) {
+                        for (Voto item : lista) {
                     %>
                     <tr>        
-                        <td><%=item.getDeccodigo()%></td>
-                        <td><%=item.getDectitulo()%></td>
-                        <td><%=item.getDecdesc()%></td>
-                        <td><%=item.getEvecodigo().getEvenome()%></td>
-                        <td><a href="../edicoes/decisao.jsp?codigo=<%=item.getDeccodigo()%>" class="btn  btn-primary btn-sm">Editar</a>
-                <buttom class="btn  btn-light btn-sm" data-toggle="modal" data-target="#myModal" onclick=" codigo =<%=item.getDeccodigo()%>" >Excluir</buttom>
+                        <td><%=item.getVotcodigo()%></td>
+                        <td><%=item.getMemcodigo().getUsucodigo().getUsunick()%></td>
+                        <td><%=item.getDeccodigo().getDectitulo()%></td>
+                        <td><%=item.getOpccodigo().getOpcnome()%></td>
+                        <td><a href="../edicoes/voto.jsp?codigo=<%=item.getVotcodigo()%>" class="btn  btn-primary btn-sm">Editar</a>
+                <buttom class="btn  btn-light btn-sm" data-toggle="modal" data-target="#myModal" onclick=" codigo =<%=item.getVotcodigo()%>" >Excluir</buttom>
                 </td>
                 </tr>
                 <%
@@ -72,7 +69,7 @@
                 %>
                 </tbody>
             </table>
-            <div style="height: 100px;"></div>
+                <div style="height: 100px;"></div>
         </div>
     </div>
 </div>
@@ -108,9 +105,10 @@
                 Não foi possível excluir essa entrada pois existe uma referencia a ela em outra tabela.
             </div>
             <div class="modal-footer">
-                <a href="../tabelas/decisao.jsp" type="button" class="btn btn-default" >Cancelar</a>
+                <a href="../tabelas/voto.jsp" type="button" class="btn btn-default" >Cancelar</a>
+                <a href="../tabelas/membro.jsp" type="button" class="btn btn-primary" >Membros</a>
                 <a href="../tabelas/opcao.jsp" type="button" class="btn btn-primary" >Opções</a>
-                <a href="../tabelas/voto.jsp" type="button" class="btn btn-primary" >Votos</a>
+                <a href="../tabelas/decisao.jsp" type="button" class="btn btn-primary" >Decisões</a>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -122,7 +120,7 @@
 
     function excluir()
     {
-        document.location.href = "decisao.jsp?deccodigo=" + codigo;
+        document.location.href = "voto.jsp?votcodigo=" + codigo;
     }
 </script>
 <!-- /.modal -->
@@ -130,7 +128,6 @@
 
 
 <%@include file="../padroes/rodape.jsp" %>
-
 
 <script>
     document.getElementById("erros").click();

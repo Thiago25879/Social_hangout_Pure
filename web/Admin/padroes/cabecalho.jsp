@@ -66,6 +66,9 @@
             <li>
               <a href="../tabelas/usuario.jsp">Usuários</a>
             </li>
+            <li>
+              <a href="../tabelas/voto.jsp">Votos</a>
+            </li>
           </ul>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Novos">
@@ -100,6 +103,9 @@
             </li>
             <li>
               <a href="../novos/usuario.jsp">Usuários</a>
+            </li>
+            <li>
+              <a href="../novos/voto.jsp">Votos</a>
             </li>
           </ul>
         </li>

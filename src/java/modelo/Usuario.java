@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Cliente
+ * @author thiago
  */
 @Entity
 @Table(name = "usuario")
@@ -29,6 +29,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Usuario.findFilter", query = "SELECT h FROM Usuario h where LOWER(h.usulogin) like :filtro or LOWER(h.usunick) like :filtro"),
     @NamedQuery(name = "Usuario.findImg", query = "SELECT n FROM Usuario n where LOWER(n.usunick) like :filtro"),
     @NamedQuery(name = "Usuario.findMax", query = "SELECT MAX( c.usucodigo ) FROM Usuario c")})
+
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,14 +38,14 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "usucodigo")
     private Integer usucodigo;
-    @Column(name = "usulogin")
-    private String usulogin;
-    @Column(name = "ususenha")
-    private String ususenha;
-    @Column(name = "usunick")
-    private String usunick;
     @Column(name = "usuimg")
     private String usuimg;
+    @Column(name = "usulogin")
+    private String usulogin;
+    @Column(name = "usunick")
+    private String usunick;
+    @Column(name = "ususenha")
+    private String ususenha;
     @OneToMany(mappedBy = "usucodigo")
     private List<Convitegr> convitegrList;
     @OneToMany(mappedBy = "usucodigo")
@@ -65,20 +66,20 @@ public class Usuario implements Serializable {
         this.usucodigo = usucodigo;
     }
 
+    public String getUsuimg() {
+        return usuimg;
+    }
+
+    public void setUsuimg(String usuimg) {
+        this.usuimg = usuimg;
+    }
+
     public String getUsulogin() {
         return usulogin;
     }
 
     public void setUsulogin(String usulogin) {
         this.usulogin = usulogin;
-    }
-
-    public String getUsusenha() {
-        return ususenha;
-    }
-
-    public void setUsusenha(String ususenha) {
-        this.ususenha = ususenha;
     }
 
     public String getUsunick() {
@@ -89,12 +90,12 @@ public class Usuario implements Serializable {
         this.usunick = usunick;
     }
 
-    public String getUsuimg() {
-        return usuimg;
+    public String getUsusenha() {
+        return ususenha;
     }
 
-    public void setUsuimg(String usuimg) {
-        this.usuimg = usuimg;
+    public void setUsusenha(String ususenha) {
+        this.ususenha = ususenha;
     }
 
     public List<Convitegr> getConvitegrList() {
@@ -135,7 +136,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.Usuario[ usucodigo=" + usucodigo + " ]";
+        return "modelo.Usuario[ usucodigo=" + usucodigo + " ]";
     }
     
 }

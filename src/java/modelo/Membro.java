@@ -6,7 +6,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -20,12 +19,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
- * @author Cliente
+ * @author thiago
  */
 @Entity
 @Table(name = "membro")
@@ -44,6 +41,10 @@ public class Membro implements Serializable {
     private Integer memcodigo;
     @Column(name = "memdata")
     private String memdata;
+    @Column(name = "memativo")
+    private Boolean memativo;
+    @OneToMany(mappedBy = "memcodigo")
+    private List<Voto> votoList;
     @OneToMany(mappedBy = "memcodigo")
     private List<Conviteev> conviteevList;
     @JoinColumn(name = "grucodigo", referencedColumnName = "grucodigo")
@@ -76,6 +77,22 @@ public class Membro implements Serializable {
 
     public void setMemdata(String memdata) {
         this.memdata = memdata;
+    }
+
+    public Boolean getMemativo() {
+        return memativo;
+    }
+
+    public void setMemativo(Boolean memativo) {
+        this.memativo = memativo;
+    }
+
+    public List<Voto> getVotoList() {
+        return votoList;
+    }
+
+    public void setVotoList(List<Voto> votoList) {
+        this.votoList = votoList;
     }
 
     public List<Conviteev> getConviteevList() {
@@ -132,7 +149,7 @@ public class Membro implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.Membro[ memcodigo=" + memcodigo + " ]";
+        return "modelo.Membro[ memcodigo=" + memcodigo + " ]";
     }
     
 }

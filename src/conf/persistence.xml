@@ -2,6 +2,16 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="SocialHangoutPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>modelo.Voto</class>
+    <class>modelo.Convitegr</class>
+    <class>modelo.Membro</class>
+    <class>modelo.Opcao</class>
+    <class>modelo.Participante</class>
+    <class>modelo.Conviteev</class>
+    <class>modelo.Grupo</class>
+    <class>modelo.Decisao</class>
+    <class>modelo.Usuario</class>
+    <class>modelo.Evento</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Social_Hangout"/>

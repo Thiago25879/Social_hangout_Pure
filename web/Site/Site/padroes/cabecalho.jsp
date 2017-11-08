@@ -13,6 +13,7 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/custom-img.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- //custom-theme -->
 	<!-- font-awesome-icons -->
 	<link href="css/font-awesome.css" rel="stylesheet">

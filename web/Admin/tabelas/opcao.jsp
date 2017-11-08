@@ -12,15 +12,20 @@
     if (request.getParameter("opccodigo") != null) {
         Opcao obj = dao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("opccodigo")));
         if (obj != null) {
-            Boolean funcionou = dao.excluir(obj);
+            Boolean funcionou = false;
+            try {
+                funcionou = dao.excluir(obj);
+            } catch (IllegalStateException ISE) {
+%><a id='erros' data-toggle="modal" data-target="#erro"></a><%
+            }
             if (funcionou) {
                 //aqui depois vai ter uma janela
             }
         }
     }
-    if(request.getParameter("filtro") != null){
+    if (request.getParameter("filtro") != null) {
         lista = dao.listar(request.getParameter("filtro").toLowerCase());
-    }else{
+    } else {
         lista = dao.listar();
     }
 %>
@@ -70,10 +75,12 @@
                 %>
                 </tbody>
             </table>
-                <div style="height: 100px;"></div>
+            <div style="height: 100px;"></div>
         </div>
     </div>
 </div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -95,6 +102,26 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade" id="erro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"  id="myModalLabel" >Erro</h4>
+            </div>
+            <div class="modal-body">
+                Não foi possível excluir essa entrada pois existe uma referencia a ela em outra tabela.
+            </div>
+            <div class="modal-footer">
+                <a href="../tabelas/decisao.jsp" type="button" class="btn btn-default" >Cancelar</a>
+                <a href="../tabelas/voto.jsp" type="button" class="btn btn-primary" >Votos</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <script>
     var codigo;
 
@@ -108,3 +135,9 @@
 
 
 <%@include file="../padroes/rodape.jsp" %>
+
+
+
+<script>
+    document.getElementById("erros").click();
+</script> 

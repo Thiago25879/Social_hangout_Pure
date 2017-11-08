@@ -22,7 +22,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Cliente
+ * @author thiago
  */
 @Entity
 @Table(name = "participante")
@@ -107,7 +107,7 @@ public class Participante implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.Participante[ parcodigo=" + parcodigo + " ]";
+        return "modelo.Participante[ parcodigo=" + parcodigo + " ]";
     }
     
 }

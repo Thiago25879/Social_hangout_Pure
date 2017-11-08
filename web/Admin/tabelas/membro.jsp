@@ -60,6 +60,7 @@
                     <tr>        
                         <td><%=item.getMemcodigo()%></td>
                         <td><%=item.getMemdata()%></td>
+                        <td><%=item.getMemativo()%></td>
                         <td><%=item.getGrucodigo().getGrunome()%></td>
                         <td><%=item.getUsucodigo().getUsunick()%></td>
                         <td><a href="../edicoes/membro.jsp?codigo=<%=item.getMemcodigo()%>" class="btn  btn-primary btn-sm">Editar</a>
@@ -110,6 +111,7 @@
                 <a href="../tabelas/membro.jsp" type="button" class="btn btn-default" >Cancelar</a>
                 <a href="../tabelas/conviteev.jsp" type="button" class="btn btn-primary" >Convites</a>
                 <a href="../tabelas/participante.jsp" type="button" class="btn btn-primary" >Participantes</a>
+                <a href="../tabelas/voto.jsp" type="button" class="btn btn-primary" >Votos</a>
             </div>
         </div>
         <!-- /.modal-content -->

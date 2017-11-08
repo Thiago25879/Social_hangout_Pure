@@ -20,13 +20,16 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Cliente
+ * @author thiago
  */
 @Entity
 @Table(name = "conviteev")
 @NamedQueries({
     @NamedQuery(name = "Conviteev.findAll", query = "SELECT c FROM Conviteev c"),
+    @NamedQuery(name = "Conviteev.findbymemidFilter", query = "SELECT l FROM Conviteev l where l.memcodigo.usucodigo.usucodigo = :filtro"),
+    @NamedQuery(name = "Conviteev.findbygruidFilter", query = "SELECT l FROM Conviteev l where l.memcodigo.grucodigo.grucodigo = :filtro"),
     @NamedQuery(name = "Conviteev.findFilter", query = "SELECT h FROM Conviteev h where LOWER(h.conevresposta) like :filtro or LOWER(h.memcodigo.usucodigo.usunick) like :filtro or LOWER(h.evecodigo.evenome) like :filtro")})
+
 public class Conviteev implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -105,7 +108,7 @@ public class Conviteev implements Serializable {
 
     @Override
     public String toString() {
-        return "dao.Conviteev[ conevcodigo=" + conevcodigo + " ]";
+        return "modelo.Conviteev[ conevcodigo=" + conevcodigo + " ]";
     }
     
 }
