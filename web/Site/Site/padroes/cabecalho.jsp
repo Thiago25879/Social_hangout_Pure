@@ -10,9 +10,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<!-- //custom-theme -->
+        <link href="css/modal-custom.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="css/custom-img.css" rel="stylesheet" type="text/css" media="all" />
+        
         <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- //custom-theme -->
 	<!-- font-awesome-icons -->
@@ -20,6 +21,7 @@
 	<!-- //font-awesome-icons -->
 	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Montserrat:200,200i,300,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+        
 </head>
 
 <%

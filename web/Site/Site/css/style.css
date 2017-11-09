@@ -4817,20 +4817,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 input[type="radio"] {
     display:none;
 }
@@ -4855,6 +4841,21 @@ input[type="radio"] + label span {
 input[type="radio"]:checked + label span {
     background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -57px top no-repeat;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4952,4 +4953,4 @@ input[type="radio"]:checked + label span {
     color: black;
     border: 1px solid #42DCA3;
     outline: none;
-    background-color: #42DCA3; }
+    background-color: #42DCA3; }z
