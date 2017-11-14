@@ -7,28 +7,27 @@
                         <div id="signup">   
                             <h1>Nova opção</h1>
 
-                             <form action="#" method="post">
+                             <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
 
                                 <div class="field-wrap">
                                     <label>
                                         Nome da opção<span class="req"></span>
                                     </label>
-                                    <input type="text" required autocomplete="off" name="txtNomeop"/>
+                                    <input type="text" id="txtNomeopc" name="txtNomeopc">
                                 </div>
-                                 
-                                <input type="hidden" value="opcao" name="txtId"/>
+                                <input type="hidden" id="modalId" name="txtId">
+                                <input type="hidden" value="opcao" name="Id"/>
                                 <button type="submit" class="button button-block"/>Criar opção</button>
 
                             </form>
 
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
 
 

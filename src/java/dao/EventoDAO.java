@@ -30,6 +30,7 @@ public class EventoDAO extends GenericDAO<Evento, Integer>{
     public List<Evento> listarbyEve(Integer filtro) throws Exception{
         
         return em.createNamedQuery("Evento.findbyeveidFilter").setParameter("filtro",filtro).getResultList();
-    }    
+    }
+    
             
 }

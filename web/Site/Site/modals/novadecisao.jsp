@@ -7,7 +7,7 @@
                         <div id="signup">   
                             <h1>Nova Decisão</h1>
 
-                            <form action="#" method="post">
+                            <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
 
                                 <div class="field-wrap">
                                     <label>
@@ -22,7 +22,7 @@
                                     </label>
                                     <input type="text" required autocomplete="off" name="txtDescrDec"/>
                                 </div>
-                                <input type="hidden" value="decisao" name="txtId"/>
+                                <input type="hidden" value="decisao" name="Id"/>
                                 <button type="submit" class="button button-block" />Criar Decisão</button>
 
                             </form>

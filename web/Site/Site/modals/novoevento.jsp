@@ -1,13 +1,13 @@
-<div class="modal fade" id="Modalnovogrupo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="Modalnovoevento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="custom-modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="form">
                         <div id="signup">   
-                            <h1>Novo Grupo</h1>
+                            <h1>Novo Evento</h1>
 
-                            <form action="index.jsp" method="post"  enctype="multipart/form-data">
+                            <form action="#" method="post"  enctype="multipart/form-data">
 
 
 
@@ -29,12 +29,19 @@
                                 <br>
                                 <div class="field-wrap">
                                     <label>
-                                        Nome do Grupo<span class="req"></span>
+                                        Nome do Evento<span class="req"></span>
                                     </label>
-                                    <input type="text" required autocomplete="off" name="txtNomegr" />
+                                    <input type="text" required autocomplete="off" name="txtNomeev" />
+                                </div>
+                                <br>
+                                <div class="field-wrap">
+                                    <label>
+                                        Descrição do Evento<span class="req"></span>
+                                    </label>
+                                    <input type="text" required autocomplete="off" name="txtDescev" />
                                 </div>
 
-                                <button type="submit" class="button button-block"/>Criar grupo</button>
+                                <button type="submit" class="button button-block"/>Criar evento</button>
 
                             </form>
 

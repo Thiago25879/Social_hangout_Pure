@@ -24,21 +24,21 @@
                     %>
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
                         <div class="agile_services_bottom_l_grid1">
-                            <img src="images/7.jpg" alt=" " class="img-responsive green-filter" />
+                            <img src="<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive green-filter" />
                             <div class="w3_service_bottom_grid_pos mid_gd">
-                                <h3 class="shadow" >Milk</h3>
+                                <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
                             </div>
                         </div>
                     </div>
                     <% }} %>
                     <%for (Conviteev item : listaconv) {
-                        if (item.getConevresposta().equals("pendente") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
+                        if (item.getConevresposta().equals("nada") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
                     %>
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
                         <div class="agile_services_bottom_l_grid1">
-                            <img src="images/8.jpg" alt=" " class="img-responsive" />
+                            <img src="<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive green-filter" />
                             <div class="w3_service_bottom_grid_pos mid_gd">
-                                <h3 class="shadow">Butter</h3>
+                                <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
                             </div>
                         </div>
                     </div>
@@ -48,9 +48,9 @@
                     %>
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
                         <div class="agile_services_bottom_l_grid1">
-                            <img src="images/9.jpg" alt=" " class="img-responsive" />
+                            <img src="<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive green-filter" />
                             <div class="w3_service_bottom_grid_pos mid_gd">
-                                <h3 class="shadow">Curd</h3>
+                                <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
                             </div>
                         </div>
                     </div>
@@ -60,9 +60,9 @@
                     %>
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
                         <div class="agile_services_bottom_l_grid1">
-                            <img src="images/9.jpg" alt=" " class="img-responsive" />
+                            <img src="<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive green-filter" />
                             <div class="w3_service_bottom_grid_pos mid_gd">
-                                <h3 class="shadow">Curd</h3>
+                                <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
                             </div>
                         </div>
                     </div>

@@ -7,3 +7,5 @@ $( document ).ready(function() {
 
     $(".auto-height").height(maxHeight);
 });
+
+   

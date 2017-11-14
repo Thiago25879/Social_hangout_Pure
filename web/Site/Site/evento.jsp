@@ -1,4 +1,6 @@
 
+<%@page import="dao.ParticipanteDAO"%>
+<%@page import="modelo.Participante"%>
 <%@page import="dao.OpcaoDAO"%>
 <%@page import="modelo.Opcao"%>
 <%@page import="dao.DecisaoDAO"%>
@@ -15,9 +17,10 @@
     listadec = ddao.listarporeveid(evento.getEvecodigo());
     List<Opcao> listaopc;
     OpcaoDAO odao = new OpcaoDAO();
+    ParticipanteDAO pdao = new ParticipanteDAO();
 
     if (request.getMethod().equals("POST")) {
-        if (request.getParameter("txtId").equals("decisao")) {
+        if (request.getParameter("Id").equals("decisao")) {
             Decisao decisao = new Decisao();
             decisao.setDectitulo(request.getParameter("txtTituloDec"));
             decisao.setDecdesc(request.getParameter("txtDescrDec"));
@@ -30,12 +33,18 @@
 
             }
         }
-        if (request.getParameter("txtId").equals("opcao")) {
+        if (request.getParameter("Id").equals("opcao")) {
             Opcao opcao = new Opcao();
-            opcao.setOpcnome(request.getParameter("txtNomeop"));
-
+            opcao.setOpcnome(request.getParameter("txtNomeopc"));
+            Decisao decisao = new Decisao();
+            decisao = ddao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("txtId")));
+            opcao.setDeccodigo(decisao);
+            opcao.setOpcnumvotos(0);
+            opcao.setParcodigo(pdao.acharparticipante(usuario.getUsucodigo(), evento.getEvecodigo()));
+            odao.incluir(opcao);
+            
         }
-
+        
     }
 
 
@@ -82,7 +91,7 @@
                         <li class="list-group-item list-custom"><input type="radio" class="radio_custom" id="r<%=itemopc.getOpccodigo()%>" name="r<%=item.getDeccodigo()%>" value="<%=itemopc.getOpccodigo()%>" /><label for="r<%=itemopc.getOpccodigo()%>"><span></span><%=itemopc.getOpcnome()%></label></li>
                                     <%}%>
                     </ul>
-                    <div class="panel-footer panel-footer-custom"> <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</div>
+                    <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>
                 </div>
             </div>
         </div>
@@ -91,5 +100,6 @@
     </div>
 </div>
 
-
+        
+        <script src="js/modalScript.js"></script>
 <%@include file="padroes/rodape.jsp" %>

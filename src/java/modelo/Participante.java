@@ -29,7 +29,9 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Participante.findAll", query = "SELECT p FROM Participante p"),
     @NamedQuery(name = "Participante.findbyusuidFilter", query = "SELECT l FROM Participante l where l.memcodigo.usucodigo.usucodigo = :filtro"),    
+    @NamedQuery(name = "Participante.findidFilter", query = "SELECT l FROM Participante l where l.memcodigo.usucodigo.usucodigo = :filtro and l.evecodigo.evecodigo = :filtro2"),    
     @NamedQuery(name = "Participante.findFilter", query = "SELECT h FROM Participante h where LOWER(h.evecodigo.evenome) like :filtro or LOWER(h.memcodigo.usucodigo.usunick) like :filtro")})
+    
 public class Participante implements Serializable {
 
     private static final long serialVersionUID = 1L;
