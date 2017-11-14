@@ -43,13 +43,22 @@
                 ParticipanteDAO pdao = new ParticipanteDAO();
                 ConviteevDAO cdao = new ConviteevDAO();
                 Conviteev conev = new Conviteev();
-                conev.setConevresposta("vou");
-                conev.setEvecodigo(obj);
-                conev.setMemcodigo(mdao.acharmembro(usuario.getUsucodigo(), item2.getGrucodigo()));
-                cdao.incluir(conev);
                 part.setEvecodigo(obj);
                 part.setMemcodigo(mdao.acharmembro(usuario.getUsucodigo(), item2.getGrucodigo()));
                 pdao.incluir(part);
+
+                List<Membro> mlist = item2.getMembroList();
+                for (Membro item : mlist) {
+                    conev = new Conviteev();
+                    conev.setEvecodigo(obj);
+                    conev.setMemcodigo(item);
+                    if (!item.getUsucodigo().getUsucodigo().equals(usuario.getUsucodigo())) {
+                        conev.setConevresposta("pendente");
+                    } else {
+                        conev.setConevresposta("vou");
+                    }
+                    cdao.incluir(conev);
+                }
                 response.sendRedirect("evento.jsp?code=" + obj.getEvecodigo() + "");
             } else {
                 //Se a adição não pode ser concluida com sucesso

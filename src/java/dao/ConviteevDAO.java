@@ -29,7 +29,7 @@ public class ConviteevDAO extends GenericDAO<Conviteev, Integer> {
     }
     public List<Conviteev> listarporgruid(Integer filtro) throws Exception{
         
-        return em.createNamedQuery("Conviteev.findbymemidFilter").setParameter("filtro", filtro ).getResultList();
+        return em.createNamedQuery("Conviteev.findbygruidFilter").setParameter("filtro", filtro ).getResultList();
     }
     
 }

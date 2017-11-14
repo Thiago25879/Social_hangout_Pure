@@ -23,4 +23,6 @@ margin-left: -37.5%;
 .bold{
     font-weight: bold;
 }
-
+.small-padding{
+    padding: 3em 1em !important ;
+}

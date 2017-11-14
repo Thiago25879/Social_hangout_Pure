@@ -19,8 +19,8 @@
 	<!-- font-awesome-icons -->
 	<link href="css/font-awesome.css" rel="stylesheet">
 	<!-- //font-awesome-icons -->
-	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Montserrat:200,200i,300,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+	<link href="css/custom-font1.css" rel="stylesheet">
+	<link href="css/custom-font2.css" rel="stylesheet">
         
 </head>
 

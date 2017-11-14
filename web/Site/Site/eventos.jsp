@@ -24,7 +24,7 @@
                             <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive auto-height" />
                             <div class="w3_service_bottom_grid_pos mid_gd custom-mid">
                                 <h3 class="shadow custom-mid " ><%=item.getEvecodigo().getEvenome()%></h3>
-                                <p class="shadow custom-mid" ><%=item.getEvecodigo().getGrucodigo().getGrunome()%></p>
+                                <p class="shadow custom-mid" >Grupo: <%=item.getEvecodigo().getGrucodigo().getGrunome()%></p>
                             </div>
                             </a>
                         </div>

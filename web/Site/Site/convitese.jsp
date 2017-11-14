@@ -58,7 +58,7 @@
                     </div>
                     <div class="serve_info_agile two rounded-div">
                         <h4><%=item.getEvecodigo().getEvenome()%></h4>
-                        <p><%=item.getEvecodigo().getEvedesc()%></p>
+                        <p>Grupo: <%=item.getEvecodigo().getGrucodigo().getGrunome()%></p>
                         <h4>
                             <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=1&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-success">Vou</span></a>
                             <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=2&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-info">Talvez</span></a>

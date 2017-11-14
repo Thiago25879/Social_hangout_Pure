@@ -20,53 +20,65 @@
             <div class="wthree_services_bottom_left_grid">
                 <div class="col-md-12 agile-w3l-img-grids-w3ls">
                     <%for (Conviteev item : listaconv) {
-                        if (item.getConevresposta().equals("vou") && item.getMemcodigo().getUsucodigo().getUsucodigo().equals(usuario.getUsucodigo())) {
+                            if (item.getConevresposta().equals("vou") && item.getMemcodigo().getUsucodigo().getUsucodigo().equals(usuario.getUsucodigo())) {
                     %>
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
                         <div class="agile_services_bottom_l_grid1">
-                            <img src="<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive green-filter" />
-                            <div class="w3_service_bottom_grid_pos mid_gd">
-                                <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
-                            </div>
+                            <a href="evento.jsp?code=<%=item.getEvecodigo().getEvecodigo()%>">
+                                <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive auto-height" />
+                                <div class="w3_service_bottom_grid_pos mid_gd small-padding">
+                                    <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <% }} %>
+                    <% }
+                        } %>
                     <%for (Conviteev item : listaconv) {
-                        if (item.getConevresposta().equals("nada") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
+                            if (item.getConevresposta().equals("pendente") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
                     %>
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
                         <div class="agile_services_bottom_l_grid1">
-                            <img src="<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive green-filter" />
-                            <div class="w3_service_bottom_grid_pos mid_gd">
-                                <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
-                            </div>
+                            <a href="evento.jsp?code=<%=item.getEvecodigo().getEvecodigo()%>">
+                                <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive auto-height" />
+                                <div class="w3_service_bottom_grid_pos mid_gd small-padding">
+                                    <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <% }} %>
+                    <% }
+                        } %>
                     <%for (Conviteev item : listaconv) {
-                        if (item.getConevresposta().equals("talvez") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
+                            if (item.getConevresposta().equals("talvez") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
                     %>
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
                         <div class="agile_services_bottom_l_grid1">
-                            <img src="<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive green-filter" />
-                            <div class="w3_service_bottom_grid_pos mid_gd">
-                                <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
-                            </div>
+                            <a href="evento.jsp?code=<%=item.getEvecodigo().getEvecodigo()%>">
+                                <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive auto-height" />
+                                <div class="w3_service_bottom_grid_pos mid_gd small-padding">
+                                    <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <% }} %>
+                    <% }
+                        } %>
                     <%for (Conviteev item : listaconv) {
-                        if (item.getConevresposta().equals("nao") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
+                            if (item.getConevresposta().equals("nao") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
                     %>
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
                         <div class="agile_services_bottom_l_grid1">
-                            <img src="<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive green-filter" />
-                            <div class="w3_service_bottom_grid_pos mid_gd">
-                                <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
-                            </div>
+                            <a href="evento.jsp?code=<%=item.getEvecodigo().getEvecodigo()%>">
+                                <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive auto-height" />
+                                <div class="w3_service_bottom_grid_pos mid_gd small-padding">
+                                    <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <% }} %>
+                    <% }
+                        }%>
                     <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>
