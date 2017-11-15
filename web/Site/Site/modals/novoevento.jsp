@@ -8,7 +8,7 @@
                             <h1>Novo Evento</h1>
 
                             <form action="#" method="post"  enctype="multipart/form-data">
-                                <input type="hidden" value="novoevento" name="Id"/>
+
 
 
                                 <div class="field-wrap col-sm-12 text-center custom-img">
@@ -40,7 +40,7 @@
                                     </label>
                                     <input type="text" required autocomplete="off" name="txtDescev" />
                                 </div>
-
+                                <input type="hidden" value="novoevento" name="Id"/>
                                 <button type="submit" class="button button-block"/>Criar evento</button>
 
                             </form>

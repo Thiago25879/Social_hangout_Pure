@@ -11,14 +11,14 @@
                                 <div class="field-wrap">
                                     <input type="hidden" value="opcoes" name="Id"/>
                                     <div class="col-md-6">
-                                        <a href="#" class="link" href="#" data-toggle="modal" data-target="#Modalgrupoedicao"><button type="submit" class="button button-block" data-dismiss="modal" />Editar Grupo</button></a>
+                                        <a href="#" class="link" data-toggle="modal" data-target="#Modalgrupoedicao"><button type="submit" class="button button-block" data-dismiss="modal" />Editar Grupo</button></a>
                                     </div>
                                 </div>
                             </form>
                             <form action="grupo.jsp?code=<%=(request.getParameter("code"))%>" method="post">
                                 <div class="field-wrap">
                                     <div class="col-md-6">
-                                        <button type="submit" class="button button-block" />Sair do Grupo</button>
+                                        <button type="submit" class="button button-block" />Sair do Grupo</button>z
                                         <input type="hidden" value="sair" name="Opc"/>
                                     </div>
                                 </div>

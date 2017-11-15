@@ -19,8 +19,9 @@
     listamem = memdao.listarporgruid(item2.getGrucodigo());
 
     if (request.getMethod().equals("POST")) {
-        if (request.getParameter("Id").equals("novoevento")) {
-            if (upload.formProcess(getServletContext(), request)) {
+        if (upload.formProcess(getServletContext(), request)) {
+            if (upload.getForm().get("Id").toString().equals("novoevento")) {
+
                 Evento obj = new Evento();
                 EventoDAO edao = new EventoDAO();
                 obj.setEvenome(upload.getForm().get("txtNomeev").toString());
@@ -64,28 +65,25 @@
                 } else {
                     //Se a adição não pode ser concluida com sucesso
                 }
+            } else {
+                if (upload.getForm().get("Id").toString().equals("editar")) {
+                    item2.setGrunome(upload.getForm().get("txtNomegred").toString());
+                    if (upload.getFiles().size() == 1) {
+                        item2.setGruimg(upload.getFiles().get(0));
+                    }
+                    dao.alterar(item2);
+                }
             }
         } else {
-            if (request.getParameter("Id").equals("opcoes")) {
                 if (request.getParameter("Opc").equals("sair")) {
                     Membro mem = new Membro();
                     mem = mdao.acharmembro(usuario.getUsucodigo(), item2.getGrucodigo());
                     mem.setMemativo(false);
                     mdao.alterar(mem);
                     response.sendRedirect("index.jsp");
-                } else {
-                    if (request.getParameter("Opc").equals("editar")) {
-                        item2.setGrunome(upload.getForm().get("txtNomegred").toString());
-                        if (upload.getFiles().size() == 1) {
-                        item2.setGruimg(upload.getFiles().get(0));
-                        }
-                        dao.alterar(item2);
-                    }
-
+                } 
                 }
             }
-        }
-    }
 %> 
 
 
@@ -113,6 +111,7 @@
                                     </label>
                                     <input type="text" required autocomplete="off" name="txtNomegred" value="<%=item2.getGrunome()%>" />
                                 </div>
+                                <input type="hidden" value="editar" name="Id"/>
                                 <button type="submit" class="button button-block"/>Editar grupo</button>
                             </form>
                         </div>
