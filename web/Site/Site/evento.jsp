@@ -47,7 +47,6 @@
         
     }
 
-
 %>
 <%@include file="modals/novadecisao.jsp" %>
 <%@include file="modals/novaopcao.jsp" %>

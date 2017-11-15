@@ -60,8 +60,9 @@
             <div class="col-md-4 w3_agile_gallery_grid ">
                 <%  int temp1 = 0;
                     for (Membro item : listam) {
-                        if (temp1 == 0) {
-                            temp1 = 3;
+                        if (item.getMemativo().equals(true)) {
+                            if (temp1 == 0) {
+                                temp1 = 3;
                 %>
 
 
@@ -78,8 +79,9 @@
                 </div>
 
                 <%
+                            }
+                            temp1--;
                         }
-                        temp1--;
                     }%>
             </div>
 
@@ -87,8 +89,9 @@
             <div class="col-md-4 w3_agile_gallery_grid ">
                 <%  int temp2 = 1;
                     for (Membro item : listam) {
-                        if (temp2 == 0) {
-                            temp2 = 3;
+                        if (item.getMemativo().equals(true)) {
+                            if (temp2 == 0) {
+                                temp2 = 3;
                 %>
                 <div class="agile_gallery_grid ">
                     <a title="<%=item.getGrucodigo().getGrunome()%>" href="grupo.jsp?code=<%=item.getGrucodigo().getGrucodigo()%>">
@@ -103,7 +106,8 @@
                 </div>
 
                 <%      }
-                        temp2--;
+                            temp2--;
+                        }
                     }%>
             </div> 
 
@@ -111,8 +115,9 @@
             <div class="col-md-4 w3_agile_gallery_grid ">
                 <%  int temp3 = 2;
                     for (Membro item : listam) {
-                        if (temp3 == 0) {
-                            temp3 = 3;
+                        if (item.getMemativo().equals(true)) {
+                            if (temp3 == 0) {
+                                temp3 = 3;
                 %>
 
                 <div class="agile_gallery_grid ">
@@ -128,8 +133,9 @@
                 </div>
 
                 <%
+                            }
+                            temp3--;
                         }
-                        temp3--;
                     }%>
 
             </div> 

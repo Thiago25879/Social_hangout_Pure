@@ -32,6 +32,7 @@
                                         Nome do Grupo<span class="req"></span>
                                     </label>
                                     <input type="text" required autocomplete="off" name="txtNomegr" />
+
                                 </div>
 
                                 <button type="submit" class="button button-block"/>Criar grupo</button>

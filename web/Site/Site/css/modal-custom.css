@@ -99,6 +99,12 @@
                 left: 2px;
                 font-size: 14px;
             }
+            .custom-modal .done {
+                -webkit-transform: translateY(50px);
+                transform: translateY(50px);
+                left: 2px;
+                font-size: 14px;
+            }
             .custom-modal label.active .req {
                 opacity: 0;
             }
