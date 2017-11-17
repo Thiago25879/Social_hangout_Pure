@@ -1,4 +1,5 @@
 
+<%@page import="modelo.Convitegr"%>
 <%@page import="dao.ParticipanteDAO"%>
 <%@page import="modelo.Participante"%>
 <%@page import="dao.ConviteevDAO"%>
@@ -13,6 +14,7 @@
     upload.setFolderUpload("Fotos");
 
     GrupoDAO dao = new GrupoDAO();
+    UsuarioDAO udao = new UsuarioDAO();
     Grupo item2 = dao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("code")));
     MembroDAO mdao = new MembroDAO();
     List<Membro> listamem;
@@ -75,15 +77,34 @@
                 }
             }
         } else {
-                if (request.getParameter("Opc").equals("sair")) {
-                    Membro mem = new Membro();
-                    mem = mdao.acharmembro(usuario.getUsucodigo(), item2.getGrucodigo());
-                    mem.setMemativo(false);
-                    mdao.alterar(mem);
-                    response.sendRedirect("index.jsp");
-                } 
+            if (request.getParameter("Opc").equals("sair")) {
+                Membro mem = new Membro();
+                mem = mdao.acharmembro(usuario.getUsucodigo(), item2.getGrucodigo());
+                mem.setMemativo(false);
+                mdao.alterar(mem);
+                response.sendRedirect("index.jsp");
+            } else {
+                if (request.getParameter("Opc").equals("buscar")) {
+                    if (udao.buscarUsr(request.getParameter("txtIdusr").toString()) != null) {
+                        Usuario usr = new Usuario();
+                        usr = udao.buscarUsr(request.getParameter("txtIdusr").toString());
+                        if (mdao.acharmembro(usr.getUsucodigo(), item2.getGrucodigo()) == null) {
+                            Convitegr convgr = new Convitegr();
+                            convgr.setCongrresposta("pendente");
+                            convgr.setGrucodigo(item2);
+                            convgr.setUsucodigo(usr);
+                            usr.getConvitegrList().add(convgr);
+                            udao.alterar(usr);
+                        } else {
+                            //Se já houver esse usuário no grupo
+                        }
+                    } else {
+                        //Se não tiver nenhum usuario com esse id
+                    }
                 }
             }
+        }
+    }
 %> 
 
 
@@ -122,7 +143,7 @@
     </div>
 </div>
 
-
+<%@include file="modals/novomembro.jsp" %>
 <%@include file="modals/grupoopcoes.jsp" %>
 <%@include file="modals/novoevento.jsp" %>
 <div class="banner-bottom dark-background">
@@ -134,7 +155,7 @@
         </div>
 
         <div class="center-pad grid_3 grid_5">
-            <h1><a class="label label-default grp-btn" href="#">Novo Membro</a>
+            <h1><a class="label label-default grp-btn" href="#" class="link" href="#" data-toggle="modal" data-target="#Modalnovomembro">Novo Membro</a>
                 <a class="label label-default grp-btn" href="geventos.jsp?code=<%=item2.getGrucodigo()%>">Eventos</a>
                 <a class="label label-default grp-btn" href="#" class="link" href="#" data-toggle="modal" data-target="#Modalnovoevento">Novo Evento</a></h1>
         </div>

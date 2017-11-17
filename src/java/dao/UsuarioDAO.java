@@ -30,6 +30,10 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer>{
         
         return em.createNamedQuery("Usuario.findImg").setParameter("filtro", "%" + filtro + "%").getResultList();
     }
+    public Usuario buscarUsr(String filtro) throws Exception{
+        
+        return (Usuario) em.createNamedQuery("Usuario.findUsr").setParameter("filtro", filtro).getSingleResult();
+    }
     public Integer Max() throws Exception {
               
         return (Integer) em.createNamedQuery("Usuario.findMax").getSingleResult(); 

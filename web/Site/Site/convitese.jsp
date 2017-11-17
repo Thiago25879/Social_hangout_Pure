@@ -18,8 +18,8 @@
         switch (X) {
             case 1:
                 conv.setConevresposta("vou");
-                part.setEvecodigo(edao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("code"))));
-                part.setMemcodigo(mdao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("group"))));
+                part.setEvecodigo(edao.buscarPorChavePrimaria(conv.getEvecodigo().getEvecodigo()));
+                part.setMemcodigo(mdao.acharmembro(usuario.getUsucodigo(),Integer.parseInt(request.getParameter("group"))));
                 pdao.incluir(part);
                 break;
             case 2:

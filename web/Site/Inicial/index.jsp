@@ -434,7 +434,7 @@
 
                                             <div class="field-wrap">
                                                 <label>
-                                                    Login<span class="req">*</span>
+                                                    Id<span class="req">*</span>
                                                 </label>
                                                 <input type="text"required autocomplete="off" name="txtLogin"/>
                                             </div>
@@ -469,7 +469,7 @@
 
                                             <div class="field-wrap">
                                                 <label>
-                                                    Login<span class="req">*</span>
+                                                    Id<span class="req">*</span>
                                                 </label>
                                                 <input type="text"required autocomplete="off" name="CtxtLogin"/>
                                             </div>

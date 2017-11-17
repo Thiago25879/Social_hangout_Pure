@@ -28,6 +28,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findFilter", query = "SELECT h FROM Usuario h where LOWER(h.usulogin) like :filtro or LOWER(h.usunick) like :filtro"),
     @NamedQuery(name = "Usuario.findImg", query = "SELECT n FROM Usuario n where LOWER(n.usunick) like :filtro"),
+    @NamedQuery(name = "Usuario.findUsr", query = "SELECT n FROM Usuario n where LOWER(n.usulogin) like :filtro"),
     @NamedQuery(name = "Usuario.findMax", query = "SELECT MAX( c.usucodigo ) FROM Usuario c")})
 
 public class Usuario implements Serializable {
