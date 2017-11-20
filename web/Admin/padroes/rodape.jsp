@@ -18,7 +18,7 @@
           <div class="modal-body">Selecione "Deslogar" abaixo se estiver pronto para terminar a sessão atual.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="login.html">Deslogar</a>
+            <a class="btn btn-primary" href="login.jsp">Deslogar</a>
           </div>
         </div>
       </div>

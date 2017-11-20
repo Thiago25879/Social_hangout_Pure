@@ -29,6 +29,7 @@
 
             Boolean resultado = ddao.incluir(decisao);
             if (resultado) {
+                response.sendRedirect("evento.jsp?code="+ request.getParameter("code") +"");
             } else {
 
             }
@@ -87,7 +88,7 @@
                     <ul class="list-group list-group-custom">
                         <li class="list-group-item list-custom center-pad bold"><span><%=item.getDecdesc()%></span></li>
                                 <%for (Opcao itemopc : listaopc) {%>
-                        <li class="list-group-item list-custom"><input type="radio" class="radio_custom" id="r<%=itemopc.getOpccodigo()%>" name="r<%=item.getDeccodigo()%>" value="<%=itemopc.getOpccodigo()%>" /><label for="r<%=itemopc.getOpccodigo()%>"><span></span><%=itemopc.getOpcnome()%></label></li>
+                        <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom" id="r<%=itemopc.getOpccodigo()%>" name="r<%=item.getDeccodigo()%>" value="<%=itemopc.getOpccodigo()%>" /><label for="r<%=itemopc.getOpccodigo()%>"><span></span><%=itemopc.getOpcnome()%></label></li>
                                     <%}%>
                     </ul>
                     <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>

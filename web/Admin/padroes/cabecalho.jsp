@@ -1,4 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String admin = (String) session.getAttribute("admin");
+    if(admin == null){
+        response.sendRedirect("../paginas/login.jsp");
+    }%>
 <!DOCTYPE html>
 <html>
     <head>      
@@ -8,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
+        <link rel="shortcut icon" href="../vendor/favicon.ico">
         <title>Social Hangout - P A</title>
         <!-- Bootstrap core CSS-->
         <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -132,7 +138,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Deslogar</a>
+            <i class="fa fa-fw fa-sign-out"></i><%=admin%> - Deslogar</a>
         </li>
       </ul>
     </div>

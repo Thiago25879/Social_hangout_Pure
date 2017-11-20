@@ -167,7 +167,7 @@
                         for (Membro item : listamem) {
                         %>
                         <div class="clearfix vertical-center usr-icon ">
-                            <img class="media-object dp1 img-circle img-responsive usr-icon" src="../../Fotos/<%=item.getUsucodigo().getUsuimg()%>" >
+                            <img class="media-object dp1 img-circle img-responsive usr-icon auto-height" src="../../Fotos/<%=item.getUsucodigo().getUsuimg()%>" >
                             <h2 class="usr-names"><%=item.getUsucodigo().getUsunick()%></h2>
                         </div>
                         <%

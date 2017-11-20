@@ -660,6 +660,7 @@ ul.dropdown-menu.agile_short_dropdown li a {
     width: 100%;
     border-bottom: 1px solid rgb(221, 221, 221);
     top: -2%;
+    background: black;
 }
 
 
@@ -4676,6 +4677,8 @@ h3.icon-subheading {
     color: white !important;
 }
 
+
+
 .inline{
     display: inline;
     white-space: pre;
@@ -4817,18 +4820,18 @@ body {
 
 
 
-input[type="radio"] {
+input[type="checkbox"] {
     display:none;
 }
 
-input[type="radio"] + label {
+input[type="checkbox"] + label {
     color: #fcf8e3;
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-weight: 300;
 }
 
-input[type="radio"] + label span {
+input[type="checkbox"] + label span {
     display:inline-block;
     width:19px;
     height:19px;
@@ -4838,7 +4841,7 @@ input[type="radio"] + label span {
     cursor:pointer;
 }
 
-input[type="radio"]:checked + label span {
+input[type="checkbox"]:checked + label span {
     background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -57px top no-repeat;
 }
 

@@ -84,7 +84,7 @@
         <meta name="author" content="">
 
         <title>Social Hangout</title>
-
+        <link rel="shortcut icon" href="img/favicon.ico">
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -115,7 +115,7 @@
                             <a class="nav-link js-scroll-trigger" href="#sobre">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#integra">Integrações</a>
+                            <a class="nav-link js-scroll-trigger" href="#atalho">Atalhos</a>
                         </li>
                     </ul>
                 </div>
@@ -157,11 +157,11 @@
         </section>
 
         <!-- Download Section -->
-        <section id="integra" class="download-section content-section text-center">
+        <section id="atalho" class="download-section content-section text-center">
             <div class="container">
                 <div class="col-lg-8 mx-auto">
-                    <h2>Acesse com sua conta no Twitter Facebook ou Google+</h2>
-                    <p>Esta funcionalidade ainda está em desenvolvimento, os botões abaixo apenas o levaram para a página inicial de cada site.</p>
+                    <h2>Redes Sociais</h2>
+                    <p>Alguns links úteis para algumas das redes sociais mais utilizadas atualmente.</p>
                     <ul class="list-inline banner-social-buttons">
                         <li class="list-inline-item">
                             <a href="https://twitter.com" class="btn btn-default btn-lg">
@@ -192,7 +192,7 @@
         <!-- Footer -->
         <footer>
             <div class="container text-center">
-                <p>Copyright &copy; Social Hangout 2017</p>
+                <p>Copyright &copy;<a href="../../Admin/index.jsp" class="white"> Social Hangout 2017 </a></p>
             </div>
         </footer>
 
@@ -533,9 +533,6 @@
 
         <!-- Plugin JavaScript -->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
         <!-- Custom scripts for this template -->
         <script src="js/grayscale.min.js"></script>
