@@ -42,13 +42,15 @@
                 objm.setMemdata(dateFormat.format(date).toString());
 
                 daom.incluir(objm);
-                response.sendRedirect("../Site/index.jsp");
+                
+                %><a id='mod' data-toggle="modal" data-target="#Modalpopupadcsuc"></a><%
             } else {
                 //Se a adição não pode ser concluida com sucesso
             }
         }
     }%>
 <%@include file="modals/novogrupo.jsp" %>
+<%@include file="modals/popup-adicionadoSucesso.jsp" %>
 
 <div class="banner-bottom dark-background">
     <div class="container">
@@ -149,3 +151,7 @@
 
 
 <%@include file="padroes/rodape.jsp" %>
+
+<script>
+    document.getElementById("mod").click();
+</script> 

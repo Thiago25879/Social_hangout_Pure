@@ -17,8 +17,8 @@
                                     <!-- image-preview-input -->
                                     <div class="btn btn-default image-preview-input">
                                         <!--<span class="image-preview-input-title">Imagem do grupo</span>-->
-                                        <input type="file" id="OOO" accept="image/png, image/jpeg" onchange="previewFile()" name="input-file-preview" style="display: none ; " />
-                                        <input type="image" class="button-Style" src="../../Fotos/empty.jpg" id="imgbtn" onclick="document.getElementById('OOO').click(); return false;" /> 
+                                        <input type="file" class="input-imagem" accept="image/png, image/jpeg" onchange="previewFile(this)" name="input-file-preview" style="display: none ; " />
+                                        <input type="image" class="button-Style imgbtn" id="imgbtn" src="../../Fotos/empty.jpg" /> 
                                     </div>
                                     <!-- image-preview-clear button -->
                                     <button type="button" class="btn btn-default image-preview-clear" style="display:none;">

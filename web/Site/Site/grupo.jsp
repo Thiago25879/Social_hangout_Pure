@@ -29,8 +29,9 @@
                 obj.setEvenome(upload.getForm().get("txtNomeev").toString());
                 obj.setEvedesc(upload.getForm().get("txtDescev").toString());
                 obj.setGrucodigo(item2);
+                System.out.println(upload.getFiles().size());
                 if (upload.getFiles().size() != 1) {
-                    obj.setEveimg("question.jpg");
+                    obj.setEveimg("empty.jpg");
                 } else {
                     obj.setEveimg(upload.getFiles().get(0));
                 }
@@ -72,6 +73,7 @@
                     item2.setGrunome(upload.getForm().get("txtNomegred").toString());
                     if (upload.getFiles().size() == 1) {
                         item2.setGruimg(upload.getFiles().get(0));
+                        System.out.println("Imagem: " + item2.getGruimg());
                     }
                     dao.alterar(item2);
                 }
@@ -85,10 +87,10 @@
                 response.sendRedirect("index.jsp");
             } else {
                 if (request.getParameter("Opc").equals("buscar")) {
-                    if (udao.buscarUsr(request.getParameter("txtIdusr").toString()) != null) {
+                    if (!udao.buscarUsrList(request.getParameter("txtIdusr")).isEmpty()) {
                         Usuario usr = new Usuario();
                         usr = udao.buscarUsr(request.getParameter("txtIdusr").toString());
-                        if (mdao.acharmembro(usr.getUsucodigo(), item2.getGrucodigo()) == null) {
+                        if (mdao.acharmembroList(usr.getUsucodigo(), item2.getGrucodigo()).isEmpty()) {
                             Convitegr convgr = new Convitegr();
                             convgr.setCongrresposta("pendente");
                             convgr.setGrucodigo(item2);
@@ -121,8 +123,8 @@
                                     <!-- image-preview-input -->
                                     <div class="btn btn-default image-preview-input">
                                         <!--<span class="image-preview-input-title">Imagem do grupo</span>-->
-                                        <input type="file" id="OOO" accept="image/png, image/jpeg" onchange="previewFile()" name="input-file-preview" style="display: none ; " />
-                                        <input type="image" class="button-Style" src="../../Fotos/<%=item2.getGruimg()%>" id="imgbtn" value="../../Fotos/<%=item2.getGruimg()%>" onclick="document.getElementById('OOO').click(); return false;" /> 
+                                        <input type="file" class="input-imagem" accept="image/png, image/jpeg" onchange="previewFile(this)" name="input-file-preview" style="display: none ; " />
+                                        <input type="image" class="button-Style imgbtn" src="../../Fotos/<%=item2.getGruimg()%>" value="../../Fotos/<%=item2.getGruimg()%>" /> 
                                     </div>
                                 </div>
                                 <br>
@@ -155,7 +157,8 @@
         </div>
 
         <div class="center-pad grid_3 grid_5">
-            <h1><a class="label label-default grp-btn" href="#" class="link" href="#" data-toggle="modal" data-target="#Modalnovomembro">Novo Membro</a>
+          <h1><!--  <a class="label label-default grp-btn" href="#" class="link" href="#" data-toggle="modal" data-target="#Modalnovomembro">Novo Membro</a>-->
+                <a class=" btn btn-default custom-btn" href="#" class="link" href="#" data-toggle="modal" data-target="#Modalnovomembro">Novo Membro</a>
                 <a class="label label-default grp-btn" href="geventos.jsp?code=<%=item2.getGrucodigo()%>">Eventos</a>
                 <a class="label label-default grp-btn" href="#" class="link" href="#" data-toggle="modal" data-target="#Modalnovoevento">Novo Evento</a></h1>
         </div>
@@ -188,4 +191,4 @@
 </div>
 
 
-<%@include file="padroes/rodape.jsp" %>
+<%@include file="padroes/rodape_1.jsp" %>
