@@ -19,7 +19,6 @@
         OpcaoDAO dao = new OpcaoDAO();
         obj.setOpccodigo(Integer.parseInt(request.getParameter("txtCodigo")));
         obj.setOpcnome(request.getParameter("txtNome"));
-        obj.setOpcnumvotos(0);
         Decisao decisao = new Decisao();
         decisao.setDeccodigo(Integer.parseInt(request.getParameter("txtDecisao")));
         obj.setDeccodigo(decisao);

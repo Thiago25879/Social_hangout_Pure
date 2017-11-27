@@ -28,6 +28,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Conviteev.findAll", query = "SELECT c FROM Conviteev c"),
     @NamedQuery(name = "Conviteev.findbymemidFilter", query = "SELECT l FROM Conviteev l where l.memcodigo.usucodigo.usucodigo = :filtro"),
     @NamedQuery(name = "Conviteev.findbygruidFilter", query = "SELECT l FROM Conviteev l where l.memcodigo.grucodigo.grucodigo = :filtro"),
+    @NamedQuery(name = "Conviteev.findbyeveidFilter", query = "SELECT l FROM Conviteev l where l.evecodigo.evecodigo = :filtro"),
     @NamedQuery(name = "Conviteev.findidFilter", query = "SELECT l FROM Conviteev l where l.memcodigo.memcodigo = :filtro and l.evecodigo.evecodigo = :filtro2"), 
     @NamedQuery(name = "Conviteev.findFilter", query = "SELECT h FROM Conviteev h where LOWER(h.conevresposta) like :filtro or LOWER(h.memcodigo.usucodigo.usunick) like :filtro or LOWER(h.evecodigo.evenome) like :filtro")})
 

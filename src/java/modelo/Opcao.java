@@ -40,8 +40,6 @@ public class Opcao implements Serializable {
     private Integer opccodigo;
     @Column(name = "opcnome")
     private String opcnome;
-    @Column(name = "opcnumvotos")
-    private Integer opcnumvotos;
     @JoinColumn(name = "deccodigo", referencedColumnName = "deccodigo")
     @ManyToOne
     private Decisao deccodigo;
@@ -72,14 +70,6 @@ public class Opcao implements Serializable {
 
     public void setOpcnome(String opcnome) {
         this.opcnome = opcnome;
-    }
-
-    public Integer getOpcnumvotos() {
-        return opcnumvotos;
-    }
-
-    public void setOpcnumvotos(Integer opcnumvotos) {
-        this.opcnumvotos = opcnumvotos;
     }
 
     public Decisao getDeccodigo() {

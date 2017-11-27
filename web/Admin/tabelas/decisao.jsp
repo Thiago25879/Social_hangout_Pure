@@ -41,6 +41,7 @@
                         <th>Código</th>
                         <th>Título</th>
                         <th>Descrição</th>
+                        <th>Nº de votos</th>
                         <th>Evento</th>
                         <th>Opções</th>
                     </tr>
@@ -50,6 +51,7 @@
                         <th>Código</th>
                         <th>Título</th>
                         <th>Descrição</th>
+                        <th>Nº de votos</th>
                         <th>Evento</th>
                         <th>Opções</th>
                     </tr>
@@ -62,6 +64,7 @@
                         <td><%=item.getDeccodigo()%></td>
                         <td><%=item.getDectitulo()%></td>
                         <td><%=item.getDecdesc()%></td>
+                        <td><%=item.getDecnumvotos()%></td>
                         <td><%=item.getEvecodigo().getEvenome()%></td>
                         <td><a href="../edicoes/decisao.jsp?codigo=<%=item.getDeccodigo()%>" class="btn  btn-primary btn-sm">Editar</a>
                 <buttom class="btn  btn-light btn-sm" data-toggle="modal" data-target="#myModal" onclick=" codigo =<%=item.getDeccodigo()%>" >Excluir</buttom>

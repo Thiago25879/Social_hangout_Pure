@@ -28,6 +28,8 @@
     ParticipanteDAO pdao = new ParticipanteDAO();
     ConviteevDAO cdao = new ConviteevDAO();
     Conviteev conviteev = new Conviteev();
+    List<Conviteev> listaconviteev;
+    listaconviteev = cdao.listarporeveid(evento.getEvecodigo());
 
     if (request.getMethod().equals("POST")) {
         if (upload.formProcess(getServletContext(), request)) {
@@ -43,6 +45,7 @@
                 Decisao decisao = new Decisao();
                 decisao.setDectitulo(request.getParameter("txtTituloDec"));
                 decisao.setDecdesc(request.getParameter("txtDescrDec"));
+                decisao.setDecnumvotos(Integer.parseInt(request.getParameter("txtNumvotos")));
                 decisao.setEvecodigo(evento);
                 ddao.incluir(decisao);
 
@@ -59,16 +62,18 @@
                     Decisao decisao = new Decisao();
                     decisao = ddao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("txtId")));
                     opcao.setDeccodigo(decisao);
-                    opcao.setOpcnumvotos(0);
                     opcao.setParcodigo(pdao.acharparticipante(usuario.getUsucodigo(), evento.getEvecodigo()));
                     odao.incluir(opcao);
 
                 } else {
                     if (request.getParameter("Id").equals("sair")) {
-                        membro = mdao.acharmembro(usuario.getUsucodigo(), evento.getEvecodigo());
-                        conviteev = cdao.acharconvite(membro.getMemcodigo(), evento.getEvecodigo());
-                        conviteev.setConevresposta("nao");
-                        cdao.alterar(conviteev);
+                        membro = (Membro) mdao.acharmembroList(usuario.getUsucodigo(), evento.getGrucodigo().getGrucodigo()).get(0);
+                        List<Conviteev> conev = cdao.acharconvitelist(membro.getMemcodigo(), evento.getEvecodigo());
+                        for (int x = 0; x < conev.size(); x++) {
+                            conviteev = conev.get(x);
+                            conviteev.setConevresposta("nao");
+                            cdao.alterar(conviteev);
+                        }
                     } else {
 
                     }
@@ -90,14 +95,14 @@
             <h4 class="white"><%=evento.getEvedesc()%></h4>
         </div>
         <div class="center-pad grid_3 grid_5">
-            <h1><a class="label label-default grp-btn" href="#">Convidados</a></h1>
+            <h1><a class="btn btn-default custom-btn font-big" href="#" class="link" href="#" data-toggle="modal" data-target="#Modallistaconvidados">Convidados</a></h1>
         </div>
 
         <br>
 
         <div class="smaller center-block ">
             <h3 class="title-w3-agileits two size-down">Decisões</h3>
-            <p class="quia shadow"><a class="link" href="#" data-toggle="modal" data-target="#Modalnovadecisao " >Nova decisão</a></p>
+            <p class="quia shadow"><a class="link" href="#" data-toggle="modal" data-target="#Modalnovadecisao " >Decisões</a></p>
         </div>
         <br>
         <%for (Decisao item : listadec) {
@@ -111,11 +116,11 @@
                     </h4>
                 </div>
 
-                <div id="collapse<%=item.getDeccodigo()%>" class="panel-collapse collapse panel-collapse-custom">
+                        <div id="collapse<%=item.getDeccodigo()%>" class="panel-collapse collapse panel-collapse-custom cada-decisao" data-limit="<%=item.getDecnumvotos()%>" >
                     <ul class="list-group list-group-custom">
                         <li class="list-group-item list-custom center-pad bold"><span><%=item.getDecdesc()%></span></li>
                                 <%for (Opcao itemopc : listaopc) {%>
-                        <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom" id="r<%=itemopc.getOpccodigo()%>" name="r<%=item.getDeccodigo()%>" value="<%=itemopc.getOpccodigo()%>" /><label for="r<%=itemopc.getOpccodigo()%>"><span></span><%=itemopc.getOpcnome()%></label></li>
+                        <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom cada-opcao" id="r<%=itemopc.getOpccodigo()%>" name="r<%=item.getDeccodigo()%>" value="<%=itemopc.getOpccodigo()%>" /><label for="r<%=itemopc.getOpccodigo()%>"><span></span><%=itemopc.getOpcnome()%></label></li>
                                     <%}%>
                     </ul>
                     <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>
@@ -151,6 +156,12 @@
                                         Descrição da decisão<span class="req"></span>
                                     </label>
                                     <input type="text" required autocomplete="off" name="txtDescrDec"/>
+                                </div>
+                                <div class="field-wrap">
+                                    <label class="done">
+                                        Numero de votos por participante<span class="req"></span>
+                                    </label>
+                                    <input type="number" required autocomplete="off" name="txtNumvotos" min="1" value="1"/>
                                 </div>
                                 <input type="hidden" value="decisao" name="Id"/>
                                 <button type="submit" class="button button-block" />Criar Decisão</button>
@@ -287,6 +298,59 @@
     </div>
 </div>
 
+<div class="modal fade" id="Modallistaconvidados" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="custom-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form">
+                        <div id="signup">   
+                            <h1>Lista de convidados</h1>
+
+                            <% 
+                            for(Conviteev item: listaconviteev){
+                            %>
+                                <div class="clearfix vertical-center usr-icon ">
+                                    <img class="media-object dp1 img-circle img-responsive usr-icon" src="../../Fotos/<%=item.getMemcodigo().getUsucodigo().getUsuimg()%>" >
+                                    <h2 class="modal-text font-h2 <%
+                                        if(item.getConevresposta().equals("vou")){
+                                             %> text-green <%
+                                        }else{if(item.getConevresposta().equals("talvez")){
+                                             %> text-blue <%
+                                        }else{if(item.getConevresposta().equals("nao")){
+                                             %> text-red <%
+                                        }else{if(item.getConevresposta().equals("pendente")){
+                                             %> text-white <%
+                                        }else{
+                                            //Deu bad
+                                        }}}}
+                                        %>"><%=item.getMemcodigo().getUsucodigo().getUsunick()%></h2>
+                                </div>
+                                <%}%>
+                                <input type="hidden" value="opcao" name="Id"/>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%@include file="padroes/rodape.jsp" %>
 
 <script src="js/modalScript.js"></script>
-<%@include file="padroes/rodape.jsp" %>
+<script>
+    
+$('.cada-opcao').on('change', function(evt) {
+   if($(this).is(":checked")){
+       var limit = $(this).closest(".cada-decisao").data("limit");
+       if($(this).closest(".cada-decisao").find(".cada-opcao:checked").length > limit){
+           $(this).prop("checked", false);
+           alert("Voce so pode escolher "+limit+"opcoes");
+       }
+   }
+});
+    
+</script>

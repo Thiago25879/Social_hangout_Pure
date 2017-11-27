@@ -22,6 +22,7 @@
     listamem = memdao.listarporgruid(item2.getGrucodigo());
     String msg = "";
     ConvitegrDAO cgdao = new ConvitegrDAO();
+    
 
     if (request.getMethod().equals("POST")) {
         if (upload.formProcess(getServletContext(), request)) {
@@ -57,6 +58,7 @@
 
                     List<Membro> mlist = item2.getMembroList();
                     for (Membro item : mlist) {
+                        if(item.getMemativo()==true){
                         conev = new Conviteev();
                         conev.setEvecodigo(obj);
                         conev.setMemcodigo(item);
@@ -66,6 +68,7 @@
                             conev.setConevresposta("pendente");
                         }
                         cdao.incluir(conev);
+                    }
                     }
                     response.sendRedirect("evento.jsp?code=" + obj.getEvecodigo() + "");
                 } else {
@@ -261,14 +264,14 @@
                                 <div class="field-wrap">
                                     <input type="hidden" value="opcoes" name="Id"/>
                                     <div class="col-md-6">
-                                        <a href="#" class="link" data-toggle="modal" data-target="#Modalgrupoedicao"><button type="submit" class="button button-block" data-dismiss="modal" />Editar Grupo</button></a>
+                                        <a href="#" data-toggle="modal" data-target="#Modalgrupoedicao"><button type="submit" class="button button-block display-bk" data-dismiss="modal" />Editar Grupo</button></a>
                                     </div>
                                 </div>
                             </form>
                             <form action="grupo.jsp?code=<%=(request.getParameter("code"))%>" method="post">
                                 <div class="field-wrap">
                                     <div class="col-md-6">
-                                        <button type="submit" class="button button-block" />Sair do Grupo</button>z
+                                        <button type="submit" class="button button-block" />Sair do Grupo</button>
                                         <input type="hidden" value="sair" name="Opc"/>
                                     </div>
                                 </div>

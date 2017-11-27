@@ -42,6 +42,8 @@ public class Decisao implements Serializable {
     private String decdesc;
     @Column(name = "dectitulo")
     private String dectitulo;
+    @Column(name = "opcnumvotos")
+    private Integer opcnumvotos;
     @OneToMany(mappedBy = "deccodigo")
     private List<Opcao> opcaoList;
     @OneToMany(mappedBy = "deccodigo")
@@ -79,6 +81,14 @@ public class Decisao implements Serializable {
 
     public void setDectitulo(String dectitulo) {
         this.dectitulo = dectitulo;
+    }
+    
+    public Integer getDecnumvotos() {
+        return opcnumvotos;
+    }
+
+    public void setDecnumvotos(Integer opcnumvotos) {
+        this.opcnumvotos = opcnumvotos;
     }
 
     public List<Opcao> getOpcaoList() {

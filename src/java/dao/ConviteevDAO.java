@@ -31,9 +31,13 @@ public class ConviteevDAO extends GenericDAO<Conviteev, Integer> {
         
         return em.createNamedQuery("Conviteev.findbygruidFilter").setParameter("filtro", filtro ).getResultList();
     }
-    public Conviteev acharconvite(Integer filtro, Integer filtro2) throws Exception{
+    public List<Conviteev> listarporeveid(Integer filtro) throws Exception{
         
-        return (Conviteev) em.createNamedQuery("Conviteev.findidFilter").setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getSingleResult();
+        return em.createNamedQuery("Conviteev.findbyeveidFilter").setParameter("filtro", filtro ).getResultList();
+    }
+    public List acharconvitelist(Integer filtro, Integer filtro2) throws Exception{
+        
+        return em.createNamedQuery("Conviteev.findidFilter", Conviteev.class).setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getResultList();
     }
     
 }

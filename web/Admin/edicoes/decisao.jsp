@@ -15,6 +15,7 @@
         obj.setDeccodigo(Integer.parseInt(request.getParameter("txtCodigo")));
         obj.setDectitulo(request.getParameter("txtTitulo"));
         obj.setDecdesc(request.getParameter("txtDescricao"));
+        obj.setDecnumvotos(Integer.parseInt(request.getParameter("txtNumvotos")));
         Evento evento = new Evento();
         evento.setEvecodigo(Integer.parseInt(request.getParameter("txtEvento")));
         obj.setEvecodigo(evento);
@@ -84,6 +85,11 @@
             <div class="form-group">
                 <label>Descrição</label>
                 <input class="form-control" type="text" name="txtDescricao" required value="<%=obj.getDecdesc()%>" />
+            </div>
+            
+            <div class="form-group">
+                <label>Nº de votos</label>
+                <input class="form-control" type="number" name="txtNumvotos" required value="<%=obj.getDecnumvotos()%>" />
             </div>
 
 

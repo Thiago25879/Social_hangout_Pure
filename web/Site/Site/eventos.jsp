@@ -21,7 +21,7 @@
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
                         <div class="agile_services_bottom_l_grid1" >
                             <a href="evento.jsp?code=<%=item.getEvecodigo().getEvecodigo()%>">
-                            <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive auto-height" />
+                            <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive auto-height auto-width" />
                             <div class="w3_service_bottom_grid_pos mid_gd custom-mid">
                                 <h3 class="shadow custom-mid " ><%=item.getEvecodigo().getEvenome()%></h3>
                                 <p class="shadow custom-mid" >Grupo: <%=item.getEvecodigo().getGrucodigo().getGrunome()%></p>

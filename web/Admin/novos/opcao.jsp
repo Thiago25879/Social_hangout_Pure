@@ -18,7 +18,6 @@
     if (request.getMethod().equals("POST")) {
         OpcaoDAO dao = new OpcaoDAO();
         obj.setOpcnome(request.getParameter("txtNome"));
-        obj.setOpcnumvotos(0);
         Decisao decisao = new Decisao();
         decisao.setDeccodigo(Integer.parseInt(request.getParameter("txtDecisao")));
         obj.setDeccodigo(decisao);
