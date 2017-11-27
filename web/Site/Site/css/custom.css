@@ -26,4 +26,14 @@ margin-left: -37.5%;
 .small-padding{
     padding: 3em 1em !important ;
 }
-
+.font-big{
+    font-size: 0.6em;
+    color: #48a030;
+    border: 1px solid #48a030;
+}
+.font-h2{
+    font-size: 1.8em;
+}
+.no-border{
+    border: none !important;
+}

@@ -26,6 +26,8 @@ import javax.persistence.Table;
 @Table(name = "convitegr")
 @NamedQueries({
     @NamedQuery(name = "Convitegr.findAll", query = "SELECT c FROM Convitegr c"),
+    @NamedQuery(name = "Convitegr.findidFilter", query = "SELECT l FROM Convitegr l where l.usucodigo.usucodigo = :filtro and l.grucodigo.grucodigo = :filtro2"), 
+    @NamedQuery(name = "Convitegr.findidListFilter", query = "SELECT l FROM Convitegr l where l.usucodigo.usucodigo = :filtro and l.grucodigo.grucodigo = :filtro2"), 
     @NamedQuery(name = "Convitegr.findFilter", query = "SELECT h FROM Convitegr h where LOWER(h.congrresposta) like :filtro or LOWER(h.grucodigo.grunome) like :filtro or LOWER(h.usucodigo.usunick) like :filtro")})
 public class Convitegr implements Serializable {
 

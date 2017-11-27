@@ -22,5 +22,12 @@ public class ConvitegrDAO extends GenericDAO<Convitegr, Integer>{
         
         return em.createNamedQuery("Convitegr.findFilter").setParameter("filtro", "%" + filtro + "%").getResultList();
     }
-    
+    public Convitegr acharconvite(Integer filtro, Integer filtro2) throws Exception{
+        
+        return (Convitegr) em.createNamedQuery("Convitegr.findidFilter").setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getSingleResult();
+    }
+    public List acharconviteList(Integer filtro, Integer filtro2) throws Exception{
+        
+        return em.createNamedQuery("Convitegr.findidListFilter", Convitegr.class).setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getResultList();
+    }
 }

@@ -34,7 +34,7 @@
     }
 
     List<Conviteev> listaconevall;
-    List<Conviteev> listaconev = new ArrayList<Conviteev>();
+    List<Conviteev> listaconev = new ArrayList<>();
     listaconevall = conevdao.listar();
     for (Conviteev itemcon : listaconevall) {
         if (itemcon.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo() && itemcon.getConevresposta() != "vou" && itemcon.getConevresposta() != "nao" && itemcon.getMemcodigo().getMemativo() == true) {
@@ -61,7 +61,9 @@
                         <p>Grupo: <%=item.getEvecodigo().getGrucodigo().getGrunome()%></p>
                         <h4>
                             <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=1&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-success">Vou</span></a>
+                            <%if(!item.getConevresposta().equals("talvez")){%>
                             <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=2&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-info">Talvez</span></a>
+                            <%}%>
                             <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=3&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-danger">Não vou</span></a>
                         </h4>
                     </div>

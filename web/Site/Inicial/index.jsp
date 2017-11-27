@@ -23,17 +23,19 @@
                         Y = true;
                     } else {
                         msg = "Senha Errada";
-                        Y = true;
-                    }
-
-                } else {
-                    y = y - 1;
+%><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+                    Y = true;
                 }
+
             } else {
                 y = y - 1;
             }
+        } else {
+            y = y - 1;
         }
-        if (Y == false) {
+    }
+    if (Y == false) {
+%><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
             msg = "Conta não existente";
         }
 
@@ -59,7 +61,8 @@
                         Usuario obj2 = dao.buscarPorChavePrimaria(y);
                         if (obj2 != null) {
                             if (obj.getUsulogin().equals(obj2.getUsulogin())) {
-                                msg2 = "Login já existente";
+                                %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+                                msg = "Id já existente";
                                 y = 0;
                             }
                         }
@@ -68,12 +71,17 @@
 
                     } else {
                         dao.incluir(obj);
+                        %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+                                msg = "Conta criada com sucesso";
                     }
                 }
-            }
+            }else{
+ %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+                                msg = "Senhas não são iguais";
+}
         }
     }
-%>
+    %>
 <html lang="en">
 
     <head>
@@ -520,7 +528,23 @@
             </div>
         </div>
 
-
+        <div class="modal fade" id="Modal-msg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="custom-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="centered">
+                                <div class="form">
+                                    <div id="message">   
+                                        <h1><%=msg%></h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                                    
 
 
 
@@ -542,3 +566,6 @@
     </body>
 
 </html>
+<script>
+                                                        document.getElementById("mod").click();
+</script> 
