@@ -29,6 +29,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "Voto.findbydecidFilter", query = "SELECT v FROM Voto v where v.deccodigo.deccodigo = :filtro"),
     @NamedQuery(name = "Voto.findbymemidFilter", query = "SELECT v FROM Voto v where v.memcodigo.usucodigo = :filtro"),
     @NamedQuery(name = "Voto.findbyopcidFilter", query = "SELECT v FROM Voto v where v.opccodigo.opccodigo = :filtro"),
+    @NamedQuery(name = "Voto.findidFilter", query = "SELECT l FROM Voto l where l.deccodigo.deccodigo = :filtro and l.memcodigo.memcodigo = :filtro2 and l.opccodigo.opccodigo = :filtro3"),
+    @NamedQuery(name = "Voto.findopcsFilter", query = "SELECT l FROM Voto l where l.deccodigo.deccodigo = :filtro and l.memcodigo.memcodigo = :filtro2"),
     @NamedQuery(name = "Voto.findFilter", query = "SELECT v FROM Voto v where LOWER(v.deccodigo.dectitulo) like :filtro or LOWER(v.memcodigo.usucodigo.usunick) like :filtro or LOWER(v.opccodigo.opcnome) like :filtro")})
 public class Voto implements Serializable {
 

@@ -1,4 +1,6 @@
 
+<%@page import="dao.VotoDAO"%>
+<%@page import="modelo.Voto"%>
 <%@page import="util.Upload"%>
 <%@page import="modelo.Conviteev"%>
 <%@page import="dao.ConviteevDAO"%>
@@ -28,6 +30,7 @@
     ParticipanteDAO pdao = new ParticipanteDAO();
     ConviteevDAO cdao = new ConviteevDAO();
     Conviteev conviteev = new Conviteev();
+    VotoDAO vdao = new VotoDAO();
     List<Conviteev> listaconviteev;
     listaconviteev = cdao.listarporeveid(evento.getEvecodigo());
 
@@ -75,7 +78,21 @@
                             cdao.alterar(conviteev);
                         }
                     } else {
-
+                         if (request.getParameter("Id").equals("submetevotos")) {  
+                             membro = (Membro) mdao.acharmembroList(usuario.getUsucodigo(), evento.getGrucodigo().getGrucodigo()).get(0);
+                             for(Decisao decisao : listadec){
+                                 List<Opcao> lopcao = odao.listarpordeccid(decisao.getDeccodigo());
+                                 for(Opcao opc : lopcao){
+                                     if(!vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).isEmpty()){
+                                         vdao.excluir((Voto) vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).get(0));
+                                     }
+                                 }
+                                 
+                                 List<Voto> lvoto = vdao.acharvotosList(decisao.getDeccodigo(), membro.getMemcodigo());
+                             }
+                         }else{
+                             //Nope nope nope
+                         }     
                     }
                 }
             }
@@ -105,6 +122,7 @@
             <p class="quia shadow"><a class="link" href="#" data-toggle="modal" data-target="#Modalnovadecisao " >Decisões</a></p>
         </div>
         <br>
+        <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
         <%for (Decisao item : listadec) {
                 listaopc = odao.listarpordeccid(item.getDeccodigo());
         %>
@@ -115,12 +133,12 @@
                         <a data-toggle="collapse" href="#collapse<%=item.getDeccodigo()%>"><%=item.getDectitulo()%></a>
                     </h4>
                 </div>
-
+                        
                         <div id="collapse<%=item.getDeccodigo()%>" class="panel-collapse collapse panel-collapse-custom cada-decisao" data-limit="<%=item.getDecnumvotos()%>" >
                     <ul class="list-group list-group-custom">
                         <li class="list-group-item list-custom center-pad bold"><span><%=item.getDecdesc()%></span></li>
                                 <%for (Opcao itemopc : listaopc) {%>
-                        <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom cada-opcao" id="r<%=itemopc.getOpccodigo()%>" name="r<%=item.getDeccodigo()%>" value="<%=itemopc.getOpccodigo()%>" /><label for="r<%=itemopc.getOpccodigo()%>"><span></span><%=itemopc.getOpcnome()%></label></li>
+                        <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom cada-opcao" id="<%=itemopc.getOpccodigo()%>" name="<%=item.getDeccodigo()%>" value="<%=itemopc.getOpccodigo()%>" /><label for="r<%=itemopc.getOpccodigo()%>"><span></span><%=itemopc.getOpcnome()%></label></li>
                                     <%}%>
                     </ul>
                     <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>
@@ -128,7 +146,7 @@
             </div>
         </div>
         <%}%>
-
+        </form>
     </div>
 </div>
 
@@ -348,7 +366,7 @@ $('.cada-opcao').on('change', function(evt) {
        var limit = $(this).closest(".cada-decisao").data("limit");
        if($(this).closest(".cada-decisao").find(".cada-opcao:checked").length > limit){
            $(this).prop("checked", false);
-           alert("Voce so pode escolher "+limit+"opcoes");
+           alert("Você só pode escolher "+limit+" opções !!!");
        }
    }
 });

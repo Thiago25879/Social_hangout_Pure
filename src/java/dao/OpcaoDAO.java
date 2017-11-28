@@ -28,4 +28,9 @@ public class OpcaoDAO extends GenericDAO<Opcao, Integer>{
         return em.createNamedQuery("Opcao.findbydecidFilter").setParameter("filtro", filtro ).getResultList();
     }
     
+    public List acharopcaoList(Integer filtro, Integer filtro2) throws Exception{
+        
+        return em.createNamedQuery("Opcao.findidFilter", Opcao.class).setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getResultList();
+    }
+    
 }

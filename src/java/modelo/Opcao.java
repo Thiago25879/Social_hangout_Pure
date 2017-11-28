@@ -28,6 +28,7 @@ import javax.persistence.Table;
 @Table(name = "opcao")
 @NamedQueries({
     @NamedQuery(name = "Opcao.findAll", query = "SELECT o FROM Opcao o"),
+    @NamedQuery(name = "Opcao.findidFilter", query = "SELECT l FROM Opcao l where l.opccodigo = :filtro and l.deccodigo.deccodigo = :filtro2"),   
     @NamedQuery(name = "Opcao.findbydecidFilter", query = "SELECT l FROM Opcao l where l.deccodigo.deccodigo = :filtro"),
     @NamedQuery(name = "Opcao.findFilter", query = "SELECT h FROM Opcao h where LOWER(h.opcnome) like :filtro or LOWER(h.deccodigo.dectitulo) like :filtro or LOWER(h.parcodigo.memcodigo.usucodigo.usunick) like :filtro")})
 public class Opcao implements Serializable {
