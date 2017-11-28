@@ -1,4 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String admin = (String) session.getAttribute("admin");
+    if(admin == null){
+        response.sendRedirect("../paginas/login.jsp");
+    }%>
 <!DOCTYPE html>
 <html>
     <head>      
@@ -145,7 +150,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Deslogar</a>
+            <i class="fa fa-fw fa-sign-out"></i><%=admin%> - Deslogar</a>
         </li>
       </ul>
     </div>

@@ -33,6 +33,7 @@
     VotoDAO vdao = new VotoDAO();
     List<Conviteev> listaconviteev;
     listaconviteev = cdao.listarporeveid(evento.getEvecodigo());
+    String msg = "";
 
     if (request.getMethod().equals("POST")) {
         if (upload.formProcess(getServletContext(), request)) {
@@ -42,6 +43,8 @@
                 evento.setEveimg(upload.getFiles().get(0));
             }
             edao.alterar(evento);
+            msg = "Evento alterado com sucesso";
+                                    %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
         } else {
 
             if (request.getParameter("Id").equals("decisao")) {
@@ -54,6 +57,8 @@
 
                 Boolean resultado = ddao.incluir(decisao);
                 if (resultado) {
+                    msg = "Nova decisão adicionada";
+                                    %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
                     response.sendRedirect("evento.jsp?code=" + request.getParameter("code") + "");
                 } else {
 
@@ -67,7 +72,8 @@
                     opcao.setDeccodigo(decisao);
                     opcao.setParcodigo(pdao.acharparticipante(usuario.getUsucodigo(), evento.getEvecodigo()));
                     odao.incluir(opcao);
-
+                    msg = "Nova opção adicionada";
+                                    %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
                 } else {
                     if (request.getParameter("Id").equals("sair")) {
                         membro = (Membro) mdao.acharmembroList(usuario.getUsucodigo(), evento.getGrucodigo().getGrucodigo()).get(0);
@@ -77,6 +83,8 @@
                             conviteev.setConevresposta("nao");
                             cdao.alterar(conviteev);
                         }
+                        msg = "Presença cancelada";
+                                    %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
                     } else {
                         if (request.getParameter("Id").equals("submetevotos")) {
                             membro = (Membro) mdao.acharmembroList(usuario.getUsucodigo(), evento.getGrucodigo().getGrucodigo()).get(0);
@@ -86,11 +94,11 @@
                                     if (request.getParameter(String.valueOf(opc.getOpccodigo())) == null) {
                                         if (vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).isEmpty()) {
                                             //Opção não está marcada e não estava antes
-                                        }else{
+                                        } else {
                                             //Opção não está marcada e estava antes
                                             vdao.excluir((Voto) vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).get(0));
                                         }
-                                    }else{
+                                    } else {
                                         if (vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).isEmpty()) {
                                             //Opção está marcada agora e não estava antes
                                             Voto voto = new Voto();
@@ -98,12 +106,14 @@
                                             voto.setMemcodigo(membro);
                                             voto.setOpccodigo(opc);
                                             vdao.incluir(voto);
-                                        }else{
+                                        } else {
                                             //Opção está marcada agora e já estava
                                         }
                                     }
                                 }
                             }
+                            msg = "Votos submetidos";
+                                    %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
                         } else {
                             //Nope nope nope
                         }
@@ -151,8 +161,8 @@
                     <div id="collapse<%=item.getDeccodigo()%>" class="panel-collapse collapse panel-collapse-custom cada-decisao" data-limit="<%=item.getDecnumvotos()%>" >
                         <ul class="list-group list-group-custom">
                             <li class="list-group-item list-custom center-pad bold"><span><%=item.getDecdesc()%> - Votos: <%=item.getDecnumvotos()%></span></li>
-                                    <%for (Opcao itemopc : listaopc) {%>
-                            <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom cada-opcao" name="<%=itemopc.getOpccodigo()%>" id="<%=itemopc.getOpccodigo()%>" value="<%=itemopc.getOpccodigo()%>" <%if(!vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).isEmpty()){%> checked <%}%>/><label for="<%=itemopc.getOpccodigo()%>"><span></span>Total: <%=vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).size()%> - <%=itemopc.getOpcnome()%></label></li>
+                                <%for (Opcao itemopc : listaopc) {%>
+                            <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom cada-opcao" name="<%=itemopc.getOpccodigo()%>" id="<%=itemopc.getOpccodigo()%>" value="<%=itemopc.getOpccodigo()%>" <%if (!vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).isEmpty()) {%> checked <%}%>/><label for="<%=itemopc.getOpccodigo()%>"><span></span>Total: <%=vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).size()%> - <%=itemopc.getOpcnome()%></label></li>
                                         <%}%>
                         </ul>
                         <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>
@@ -165,7 +175,6 @@
         </form>
     </div>
 </div>
-
 
 <div class="modal fade" id="Modalnovadecisao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="custom-modal">
@@ -243,7 +252,6 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="Modaleventoopcoes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="custom-modal">
         <div class="modal-dialog">
@@ -257,7 +265,7 @@
                                 <div class="field-wrap">
                                     <input type="hidden" value="opcoes" name="Id"/>
                                     <div class="col-md-6">
-                                        <a href="#" class="link" data-toggle="modal" data-target="#Modaleditarevento"><button type="submit" class="button button-block" data-dismiss="modal" />Editar <br/> Evento</button></a>
+                                        <a href="#"  data-toggle="modal" data-target="#Modaleditarevento"><button type="submit" class="button button-block" data-dismiss="modal" />Editar <br/> Evento</button></a>
                                     </div>
                                 </div>
                             </form>
@@ -377,6 +385,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="Modal-msg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="custom-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="centered">
+                        <div class="form">
+                            <div id="message">   
+                                <h1><%=msg%></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
 
 <%@include file="padroes/rodape.jsp" %>
 
@@ -394,3 +419,6 @@
                                             });
 
 </script>
+<script>
+    document.getElementById("mod").click();
+</script> 

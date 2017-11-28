@@ -2,7 +2,9 @@
 <%@page import="dao.UsuarioDAO"%>
 <%@page import="modelo.Usuario"%>
 <!DOCTYPE html>
-<%  UsuarioDAO dao = new UsuarioDAO();
+<%  session.setAttribute("usuario", null);
+    session.setAttribute("Logado", null);
+    UsuarioDAO dao = new UsuarioDAO();
     String msg = "";
     String msg2 = "";
     Upload upload = new Upload();

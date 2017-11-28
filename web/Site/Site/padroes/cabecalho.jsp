@@ -61,7 +61,7 @@ listam = memdao.listarporusuid(usuario.getUsucodigo());
 					<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 						<div class="w3l_header_left">
 							<ul>
-								<li><i class="glyphicon glyphicon-user" aria-hidden="true"></i> <a href="conta.jsp">Bem vindo <%=usuario.getUsunick()%></a></li>
+								<li><i class="glyphicon glyphicon-user" aria-hidden="true"></i> <a href="#" class="link" href="#" data-toggle="modal" data-target="#Modalcontaopcoes">Bem vindo <%=usuario.getUsunick()%></a></li>
 							</ul>
 						</div>
 						<div class="clearfix"> </div>
@@ -90,3 +90,34 @@ listam = memdao.listarporusuid(usuario.getUsucodigo());
 			
 		</div>
 	</div>
+                                                        
+<div class="modal fade" id="Modalcontaopcoes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="custom-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form">
+                        <div id="signup">   
+                            <h1>Opções</h1>
+
+                                <div class="field-wrap">
+                                    <div class="col-md-6">
+                                        <button type="button" onclick="location.href = 'conta.jsp'" class="button button-block display-bk" data-dismiss="modal" />Editar Conta</button>
+                                    </div>
+                                </div>
+                                <div class="field-wrap">
+                                    <div class="col-md-6">
+                                        <button type="button" onclick="location.href = '../Inicial/index.jsp'" class="button button-block display-bk" data-dismiss="modal" />Deslogar</button>
+                                    </div>
+                                </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

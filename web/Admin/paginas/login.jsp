@@ -1,5 +1,6 @@
 <html lang="en">
     <%               
+        session.setAttribute("admin", null); 
         if (request.getParameter("login") != null && request.getParameter("password") != null) {
             if (request.getParameter("login").equals("admin") && request.getParameter("password").equals("admin")) {
                 session.setAttribute("admin", (request.getParameter("login")));
@@ -41,6 +42,7 @@
                             <input class="form-control"id="password"  name="password" type="password" placeholder="Digite sua senha">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block" href="index.html">Login</button>
+                        <button type="button" onclick="location.href = '../../Site/Site/index.jsp'" class="btn btn-primary btn-block" href="index.html">Voltar</button>
                     </form>
 
                 </div>
