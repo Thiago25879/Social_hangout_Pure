@@ -31,6 +31,11 @@ margin-left: -37.5%;
     color: #48a030;
     border: 1px solid #48a030;
 }
+.font-bigger{
+    font-size: 1em;
+    color: #48a030;
+    border: 1px solid #48a030;
+}
 .font-h2{
     font-size: 1.8em;
 }

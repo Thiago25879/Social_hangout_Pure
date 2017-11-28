@@ -63,14 +63,7 @@
 <script src="js/waypoints.min.js"></script>
 <script src="js/index.js"></script>
 <script src="js/counterup.min.js"></script>
-<script>
-    jQuery(document).ready(function ($) {
-        $('.counter').counterUp({
-            delay: 10,
-            time: 1000,
-        });
-    });
-</script>
+
 <!-- //Stats-Number-Scroller-Animation-JavaScript -->
 
 <!-- flexSlider -->

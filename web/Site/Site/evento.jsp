@@ -78,21 +78,35 @@
                             cdao.alterar(conviteev);
                         }
                     } else {
-                         if (request.getParameter("Id").equals("submetevotos")) {  
-                             membro = (Membro) mdao.acharmembroList(usuario.getUsucodigo(), evento.getGrucodigo().getGrucodigo()).get(0);
-                             for(Decisao decisao : listadec){
-                                 List<Opcao> lopcao = odao.listarpordeccid(decisao.getDeccodigo());
-                                 for(Opcao opc : lopcao){
-                                     if(!vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).isEmpty()){
-                                         vdao.excluir((Voto) vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).get(0));
-                                     }
-                                 }
-                                 
-                                 List<Voto> lvoto = vdao.acharvotosList(decisao.getDeccodigo(), membro.getMemcodigo());
-                             }
-                         }else{
-                             //Nope nope nope
-                         }     
+                        if (request.getParameter("Id").equals("submetevotos")) {
+                            membro = (Membro) mdao.acharmembroList(usuario.getUsucodigo(), evento.getGrucodigo().getGrucodigo()).get(0);
+                            for (Decisao decisao : listadec) {
+                                List<Opcao> lopcao = odao.listarpordeccid(decisao.getDeccodigo());
+                                for (Opcao opc : lopcao) {
+                                    if (request.getParameter(String.valueOf(opc.getOpccodigo())) == null) {
+                                        if (vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).isEmpty()) {
+                                            //Opção não está marcada e não estava antes
+                                        }else{
+                                            //Opção não está marcada e estava antes
+                                            vdao.excluir((Voto) vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).get(0));
+                                        }
+                                    }else{
+                                        if (vdao.acharvotoList(decisao.getDeccodigo(), membro.getMemcodigo(), opc.getOpccodigo()).isEmpty()) {
+                                            //Opção está marcada agora e não estava antes
+                                            Voto voto = new Voto();
+                                            voto.setDeccodigo(decisao);
+                                            voto.setMemcodigo(membro);
+                                            voto.setOpccodigo(opc);
+                                            vdao.incluir(voto);
+                                        }else{
+                                            //Opção está marcada agora e já estava
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            //Nope nope nope
+                        }
                     }
                 }
             }
@@ -123,29 +137,31 @@
         </div>
         <br>
         <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
-        <%for (Decisao item : listadec) {
-                listaopc = odao.listarpordeccid(item.getDeccodigo());
-        %>
-        <div class="panel-group">
-            <div class="panel panel-default panel-custom">
-                <div class="panel-heading panel-heading-custom">
-                    <h4 class="panel-title panel-title-custom">
-                        <a data-toggle="collapse" href="#collapse<%=item.getDeccodigo()%>"><%=item.getDectitulo()%></a>
-                    </h4>
-                </div>
-                        
-                        <div id="collapse<%=item.getDeccodigo()%>" class="panel-collapse collapse panel-collapse-custom cada-decisao" data-limit="<%=item.getDecnumvotos()%>" >
-                    <ul class="list-group list-group-custom">
-                        <li class="list-group-item list-custom center-pad bold"><span><%=item.getDecdesc()%></span></li>
-                                <%for (Opcao itemopc : listaopc) {%>
-                        <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom cada-opcao" id="<%=itemopc.getOpccodigo()%>" name="<%=item.getDeccodigo()%>" value="<%=itemopc.getOpccodigo()%>" /><label for="r<%=itemopc.getOpccodigo()%>"><span></span><%=itemopc.getOpcnome()%></label></li>
-                                    <%}%>
-                    </ul>
-                    <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>
+            <%for (Decisao item : listadec) {
+                    listaopc = odao.listarpordeccid(item.getDeccodigo());
+            %>
+            <div class="panel-group">
+                <div class="panel panel-default panel-custom">
+                    <div class="panel-heading panel-heading-custom">
+                        <h4 class="panel-title panel-title-custom">
+                            <a data-toggle="collapse" href="#collapse<%=item.getDeccodigo()%>"><%=item.getDectitulo()%></a>
+                        </h4>
+                    </div>
+
+                    <div id="collapse<%=item.getDeccodigo()%>" class="panel-collapse collapse panel-collapse-custom cada-decisao" data-limit="<%=item.getDecnumvotos()%>" >
+                        <ul class="list-group list-group-custom">
+                            <li class="list-group-item list-custom center-pad bold"><span><%=item.getDecdesc()%> - Votos: <%=item.getDecnumvotos()%></span></li>
+                                    <%for (Opcao itemopc : listaopc) {%>
+                            <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom cada-opcao" name="<%=itemopc.getOpccodigo()%>" id="<%=itemopc.getOpccodigo()%>" value="<%=itemopc.getOpccodigo()%>" <%if(!vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).isEmpty()){%> checked <%}%>/><label for="<%=itemopc.getOpccodigo()%>"><span></span>Total: <%=vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).size()%> - <%=itemopc.getOpcnome()%></label></li>
+                                        <%}%>
+                        </ul>
+                        <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <%}%>
+            <%}%>
+            <input type="hidden" value="submetevotos" name="Id"/>
+            <button class="btn btn-default custom-btn font-bigger center-block" type="submit">Submeter votos</button>
         </form>
     </div>
 </div>
@@ -325,27 +341,33 @@
                         <div id="signup">   
                             <h1>Lista de convidados</h1>
 
-                            <% 
-                            for(Conviteev item: listaconviteev){
+                            <%
+                                for (Conviteev item : listaconviteev) {
                             %>
-                                <div class="clearfix vertical-center usr-icon ">
-                                    <img class="media-object dp1 img-circle img-responsive usr-icon" src="../../Fotos/<%=item.getMemcodigo().getUsucodigo().getUsuimg()%>" >
-                                    <h2 class="modal-text font-h2 <%
-                                        if(item.getConevresposta().equals("vou")){
-                                             %> text-green <%
-                                        }else{if(item.getConevresposta().equals("talvez")){
-                                             %> text-blue <%
-                                        }else{if(item.getConevresposta().equals("nao")){
-                                             %> text-red <%
-                                        }else{if(item.getConevresposta().equals("pendente")){
-                                             %> text-white <%
-                                        }else{
-                                            //Deu bad
-                                        }}}}
-                                        %>"><%=item.getMemcodigo().getUsucodigo().getUsunick()%></h2>
-                                </div>
-                                <%}%>
-                                <input type="hidden" value="opcao" name="Id"/>
+                            <div class="clearfix vertical-center usr-icon ">
+                                <img class="media-object dp1 img-circle img-responsive usr-icon" src="../../Fotos/<%=item.getMemcodigo().getUsucodigo().getUsuimg()%>" >
+                                <h2 class="modal-text font-h2 <%
+                                    if (item.getConevresposta().equals("vou")) {
+                                    %> text-green <%
+                                    } else {
+                                        if (item.getConevresposta().equals("talvez")) {
+                                    %> text-blue <%
+                                    } else {
+                                        if (item.getConevresposta().equals("nao")) {
+                                    %> text-red <%
+                                    } else {
+                                        if (item.getConevresposta().equals("pendente")) {
+                                    %> text-white <%
+                                                    } else {
+                                                        //Deu bad
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    %>"><%=item.getMemcodigo().getUsucodigo().getUsunick()%></h2>
+                            </div>
+                            <%}%>
+                            <input type="hidden" value="opcao" name="Id"/>
 
                         </div>
                     </div>
@@ -360,15 +382,15 @@
 
 <script src="js/modalScript.js"></script>
 <script>
-    
-$('.cada-opcao').on('change', function(evt) {
-   if($(this).is(":checked")){
-       var limit = $(this).closest(".cada-decisao").data("limit");
-       if($(this).closest(".cada-decisao").find(".cada-opcao:checked").length > limit){
-           $(this).prop("checked", false);
-           alert("Você só pode escolher "+limit+" opções !!!");
-       }
-   }
-});
-    
+
+                                            $('.cada-opcao').on('change', function (evt) {
+                                                if ($(this).is(":checked")) {
+                                                    var limit = $(this).closest(".cada-decisao").data("limit");
+                                                    if ($(this).closest(".cada-decisao").find(".cada-opcao:checked").length > limit) {
+                                                        $(this).prop("checked", false);
+                                                        alert("Você só pode escolher " + limit + " opções !!!");
+                                                    }
+                                                }
+                                            });
+
 </script>
