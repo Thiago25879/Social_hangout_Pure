@@ -1,4 +1,6 @@
 
+<%@page import="dao.ConvitegrDAO"%>
+<%@page import="modelo.Convitegr"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -15,6 +17,8 @@
     GrupoDAO dao = new GrupoDAO();
     Membro objm = new Membro();
     MembroDAO daom = new MembroDAO();
+    Convitegr congr = new Convitegr();
+    ConvitegrDAO cdao = new ConvitegrDAO();
 
     if (request.getMethod().equals("POST")) {
         if (upload.formProcess(getServletContext(), request)) {
@@ -42,6 +46,10 @@
                 objm.setMemdata(dateFormat.format(date).toString());
 
                 daom.incluir(objm);
+                congr.setGrucodigo(obj);
+                congr.setUsucodigo(usuario);
+                congr.setCongrresposta("sim");
+                cdao.incluir(congr);
                 response.sendRedirect("grupo.jsp?code=" + obj.getGrucodigo()+ "");
                %><a id='mod' data-toggle="modal" data-target="#Modalgrupoadcsuc"></a><%
             } else {

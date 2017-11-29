@@ -56,7 +56,7 @@
                     part.setMemcodigo(mdao.acharmembro(usuario.getUsucodigo(), item2.getGrucodigo()));
                     pdao.incluir(part);
 
-                    List<Membro> mlist = item2.getMembroList();
+                    List<Membro> mlist = mdao.achargrmembroList(item2.getGrucodigo());
                     for (Membro item : mlist) {
                         if(item.getMemativo()==true){
                         conev = new Conviteev();

@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="util.Upload"%>
 <%@page import="dao.UsuarioDAO"%>
 <%@page import="modelo.Usuario"%>
@@ -11,78 +12,64 @@
     upload.setFolderUpload("Fotos");
 
     if (request.getParameter("access") != null) {
-        int y = dao.Max();
-        boolean Y = false;
-        while (y > 0 && Y == false) {
-            Usuario obj = dao.buscarPorChavePrimaria(y);
-            if (obj != null) {
-                if (obj.getUsulogin().equals(request.getParameter("txtLogin"))) {
-                    if (request.getParameter("txtSenha").equals(obj.getUsusenha())) {
-                        msg = "Login efetuado com sucesso";
-                        session.setAttribute("usuario", obj);
-                        session.setAttribute("Logado", (request.getParameter("txtLogin")));
-                        response.sendRedirect("../Site/index.jsp");
-                        Y = true;
-                    } else {
-                        msg = "Senha Errada";
-%><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
-                    Y = true;
-                }
-
+        List list = dao.buscarUsrList(request.getParameter("txtLogin").toLowerCase());
+        if (!list.isEmpty()) {
+            Usuario usuario = (Usuario) list.get(0);
+            if (usuario.getUsusenha().equals(request.getParameter("txtSenha"))) {
+                msg = "Login efetuado com sucesso";
+                session.setAttribute("usuario", usuario);
+                session.setAttribute("Logado", (request.getParameter("txtLogin")));
+                response.sendRedirect("../Site/index.jsp");
             } else {
-                y = y - 1;
-            }
-        } else {
-            y = y - 1;
-        }
-    }
-    if (Y == false) {
+                msg = "Senha Errada";
 %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
-            msg = "Conta não existente";
-        }
-
     }
+} else {
+%><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+        msg = "Conta não existente";
+    }
+
+} else {
     if (request.getMethod().equals("POST")) {
         if (upload.formProcess(getServletContext(), request)) {
             if (upload.getForm().get("CtxtSenha").toString().equals(upload.getForm().get("CtxtCSenha").toString())) {
-                Usuario obj = new Usuario();
-                obj.setUsunick(upload.getForm().get("CtxtNick").toString());
-                obj.setUsulogin(upload.getForm().get("CtxtLogin").toString());
-                obj.setUsusenha(upload.getForm().get("CtxtSenha").toString());
-                if (upload.getFiles().size() != 1) {
-                    obj.setUsuimg("empty.jpg");
-                } else {
-                    obj.setUsuimg(upload.getFiles().get(0));
-                }
-                if (obj == null) {
-                    response.sendRedirect("../inicial/index.jsp");
-                    return;
-                } else {
-                    int y = 0;
-                    for (y = dao.Max(); y > 0; y--) {
-                        Usuario obj2 = dao.buscarPorChavePrimaria(y);
-                        if (obj2 != null) {
-                            if (obj.getUsulogin().equals(obj2.getUsulogin())) {
-                                %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
-                                msg = "Id já existente";
-                                y = 0;
-                            }
+                List list = dao.buscarUsrList(upload.getForm().get("CtxtNick").toString().toLowerCase());
+                if (list.isEmpty()) {
+
+                    Usuario obj = new Usuario();
+                    obj.setUsunick(upload.getForm().get("CtxtNick").toString());
+                    obj.setUsulogin(upload.getForm().get("CtxtLogin").toString());
+                    obj.setUsusenha(upload.getForm().get("CtxtSenha").toString());
+                    if (upload.getFiles().size() != 1) {
+                        obj.setUsuimg("empty.jpg");
+                    } else {
+                        obj.setUsuimg(upload.getFiles().get(0));
+                    }
+                    if (obj == null) {
+                        response.sendRedirect("../inicial/index.jsp");
+                        return;
+                    } else {
+
+                        if (upload.getForm().get("CtxtSenha").toString().equals(upload.getForm().get("CtxtCSenha").toString())) {
+                            dao.incluir(obj);
+                            session.setAttribute("usuario", obj);
+                            session.setAttribute("Logado", obj.getUsunick());
+                            response.sendRedirect("../Site/index.jsp");
                         }
                     }
-                    if (y == -1) {
 
-                    } else {
-                        dao.incluir(obj);
-                        %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
-                                msg = "Conta criada com sucesso";
+                } else {
+                    msg = "Id já existente";
+    %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+        }
+    } else {
+        msg = "Senhas não são iguais";
+    %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
                     }
                 }
-            }else{
- %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
-                                msg = "Senhas não são iguais";
-}
+            }
         }
-    }
+
     %>
 <html lang="en">
 
@@ -500,12 +487,12 @@
 
                                                 <!-- image-preview-clear button -->
                                                 <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                                                    <span class="glyphicon glyphicon-remove"></span> Clear
+                                                    <span class="glyphicon glyphicon-remove"></span> Limpar
                                                 </button>
                                                 <!-- image-preview-input -->
                                                 <div class="btn btn-default image-preview-input">
                                                     <span class="glyphicon glyphicon-folder-open"></span>
-                                                    <span class="image-preview-input-title">Browse</span>
+                                                    <span class="image-preview-input-title">Selecionar</span>
                                                     <input type="file" id="OOO" accept="image/png, image/jpeg" onchange="previewFile()" name="input-file-preview" style="display: none ; " />
                                                     <input type="image" class="button-Style" src="../../Fotos/empty.jpg" id="imgbtn" onclick="document.getElementById('OOO').click(); return false;" /> 
                                                 </div>

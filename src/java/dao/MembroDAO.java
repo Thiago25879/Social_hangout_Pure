@@ -38,6 +38,10 @@ public class MembroDAO extends GenericDAO<Membro, Integer>{
         
         return em.createNamedQuery("Membro.findidFilter", Membro.class).setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getResultList();
     }
+    public List<Membro> achargrmembroList(Integer filtro) throws Exception{
+        
+        return em.createNamedQuery("Membro.findgrFilter", Membro.class).setParameter("filtro" , filtro ).getResultList();
+    }
     
     
 }

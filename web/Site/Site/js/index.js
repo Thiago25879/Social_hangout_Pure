@@ -60,7 +60,7 @@ $(function() {
     var preview = document.getElementById('imgbtn');
     $('.image-preview-clear').click(function(){
         $('.image-preview-clear').hide();
-        $(".image-preview-input-title").text("Browse"); 
+        $(".image-preview-input-title").text("Imagem"); 
         preview.src = "../../Fotos/empty.jpg";
     }); 
     

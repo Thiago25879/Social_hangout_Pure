@@ -130,7 +130,7 @@
         <div class="smaller center-block">
             <h3 class="title-w3-agileits two"><%=evento.getEvenome()%></h3>  
             <br>
-            <a href="#" class="link" data-toggle="modal" data-target="#Modaleventoopcoes"><img src="../../Fotos/<%=evento.getEveimg()%>" alt=" " class="center-block img-responsive img-circle" /></a>
+            <a href="#" class="link" data-toggle="modal" data-target="#Modaleventoopcoes"><img src="../../Fotos/<%=evento.getEveimg()%>" alt=" " class="center-block img-responsive img-circle display-default" /></a>
         </div>
         <div class="center-pad">
             <h4 class="white"><%=evento.getEvedesc()%></h4>
