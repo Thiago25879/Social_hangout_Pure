@@ -51,7 +51,6 @@
                 congr.setCongrresposta("sim");
                 cdao.incluir(congr);
                 response.sendRedirect("grupo.jsp?code=" + obj.getGrucodigo()+ "");
-               %><a id='mod' data-toggle="modal" data-target="#Modalgrupoadcsuc"></a><%
             } else {
                 //Se a adição não pode ser concluida com sucesso
             }
@@ -204,7 +203,6 @@
         </div>
     </div>
 </div>
-
 
 <%@include file="padroes/rodape.jsp" %>
 

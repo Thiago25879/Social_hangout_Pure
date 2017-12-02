@@ -1,9 +1,11 @@
+<%@page import="util.Criptografia"%>
 <%@page import="java.util.List"%>
 <%@page import="util.Upload"%>
 <%@page import="dao.UsuarioDAO"%>
 <%@page import="modelo.Usuario"%>
 <!DOCTYPE html>
-<%  session.setAttribute("usuario", null);
+<%  Criptografia cript = new Criptografia();
+    session.setAttribute("usuario", null);
     session.setAttribute("Logado", null);
     UsuarioDAO dao = new UsuarioDAO();
     String msg = "";
@@ -15,7 +17,7 @@
         List list = dao.buscarUsrList(request.getParameter("txtLogin").toLowerCase());
         if (!list.isEmpty()) {
             Usuario usuario = (Usuario) list.get(0);
-            if (usuario.getUsusenha().equals(request.getParameter("txtSenha"))) {
+            if (usuario.getUsusenha().equals(cript.convertPasswordToMD5(request.getParameter("txtSenha")))) {
                 msg = "Login efetuado com sucesso";
                 session.setAttribute("usuario", usuario);
                 session.setAttribute("Logado", (request.getParameter("txtLogin")));
@@ -39,7 +41,7 @@
                     Usuario obj = new Usuario();
                     obj.setUsunick(upload.getForm().get("CtxtNick").toString());
                     obj.setUsulogin(upload.getForm().get("CtxtLogin").toString());
-                    obj.setUsusenha(upload.getForm().get("CtxtSenha").toString());
+                    obj.setUsusenha(cript.convertPasswordToMD5(upload.getForm().get("CtxtSenha").toString()));
                     if (upload.getFiles().size() != 1) {
                         obj.setUsuimg("empty.jpg");
                     } else {

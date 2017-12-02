@@ -1,6 +1,9 @@
+<%@page import="util.Criptografia"%>
 <%@page import="util.Upload"%>
 <%@include file="padroes/cabecalho.jsp" %>
 <%Upload upload = new Upload();
+    Criptografia cript = new Criptografia();
+    String msg = "";
 
     upload.setFolderUpload("Fotos");
 
@@ -10,26 +13,47 @@
         if (upload.formProcess(getServletContext(), request)) {
             obj = usuario;
             obj.setUsunick(upload.getForm().get("nick").toString());
-            if(!upload.getForm().get("senhaant").toString().isEmpty() || !upload.getForm().get("senhanov").toString().isEmpty()){
-                if(upload.getForm().get("senhaant").toString().equals(usuario.getUsusenha().toString()) &&  upload.getForm().get("senhanov").toString().equals(upload.getForm().get("senhaconf").toString())){
-                    obj.setUsusenha(upload.getForm().get("senhanov").toString());
-                }
-            }
-            if (upload.getFiles().size() == 1) {
-                obj.setUsuimg(upload.getFiles().get(0));
-            }
-            dao.alterar(obj);
-            Boolean resultado = dao.alterar(obj);
-                if (resultado) {
-                    
-                }else{
-                    
-                }
-        }
-    }
+            if (!upload.getForm().get("senhaant").toString().isEmpty() || !upload.getForm().get("senhanov").toString().isEmpty()) {
+                if (cript.convertPasswordToMD5(upload.getForm().get("senhaant").toString()).equals(usuario.getUsusenha().toString())) {
+                    if (upload.getForm().get("senhanov").toString().equals(upload.getForm().get("senhaconf").toString())) {
+                        obj.setUsusenha(cript.convertPasswordToMD5(upload.getForm().get("senhanov").toString()));
+                        if (upload.getFiles().size() == 1) {
+                            obj.setUsuimg(upload.getFiles().get(0));
+                        }
+                        dao.alterar(obj);
+                        Boolean resultado = dao.alterar(obj);
+                        if (resultado) {
+                            msg = "Dados alterados com sucesso";
+                        %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+                            } else {
 
+                            }
+                        } else {
+                            msg = "Digite a confirmação de senha igual";
+                        %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+                            }
+                        } else {
+                            msg = "Digite a senha anterior corretamente";
+                            %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+                                }
 
-%>
+                            } else {
+                                if (upload.getFiles().size() == 1) {
+                                    obj.setUsuimg(upload.getFiles().get(0));
+                                }
+                                dao.alterar(obj);
+                                Boolean resultado = dao.alterar(obj);
+                                if (resultado) {
+                                    msg = "Dados alterados com sucesso";
+                            %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+                                            } else {
+
+                                            }
+                                        }
+                                    }
+                                }
+
+    %>
 
 <div class="col-md-8 wthree_contact_left col-centered">
     <h3 class="title-w3-agileits two">Usuário</h3>
@@ -112,3 +136,25 @@
 
 
 <%@include file="padroes/rodape.jsp" %>
+
+<div class="modal fade" id="Modal-msg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="custom-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="centered">
+                        <div class="form">
+                            <div id="message">   
+                                <h1><%=msg%></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<script>
+    document.getElementById("mod").click();
+</script> 

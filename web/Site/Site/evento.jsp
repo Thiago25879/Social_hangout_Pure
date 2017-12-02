@@ -127,7 +127,7 @@
 
 <div class="banner-bottom dark-background">
     <div class="container ">
-        <div class="smaller center-block">
+        <div class="smaller center-block  center-webkit">
             <h3 class="title-w3-agileits two"><%=evento.getEvenome()%></h3>  
             <br>
             <a href="#" class="link" data-toggle="modal" data-target="#Modaleventoopcoes"><img src="../../Fotos/<%=evento.getEveimg()%>" alt=" " class="center-block img-responsive img-circle display-default" /></a>

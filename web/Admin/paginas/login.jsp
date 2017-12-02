@@ -1,8 +1,10 @@
 <html lang="en">
-    <%               
+<%@page import="util.Criptografia"%>
+    <%          
+        Criptografia cript = new Criptografia();
         session.setAttribute("admin", null); 
         if (request.getParameter("login") != null && request.getParameter("password") != null) {
-            if (request.getParameter("login").equals("admin") && request.getParameter("password").equals("admin")) {
+            if (request.getParameter("login").equals("admin") && cript.convertPasswordToMD5(request.getParameter("password")).equals("21232f297a57a5a743894a0e4a801fc3")) {
                 session.setAttribute("admin", (request.getParameter("login")));
                 response.sendRedirect("index.jsp");
             }else{
