@@ -4801,8 +4801,17 @@ body {
 .text-white{
     color:white !important;
 }
-
-
+.custom-decision{
+    font-size: 1.7em ;
+    text-shadow:
+        -1px -1px 0 #48a030,
+        1px -1px 0 #48a030,
+        -1px 1px 0 #48a030,
+        1px 1px 0 #48a030;  
+}
+.center-webkit{
+        text-align: -webkit-center;
+}
 
 
 

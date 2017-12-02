@@ -15,7 +15,7 @@
             obj.setUsusenha(upload.getForm().get("txtSenha").toString());
             obj.setUsunick(upload.getForm().get("txtNick").toString());
             if (upload.getFiles().size() != 1) {
-                obj.setUsuimg("question.jpg");
+                obj.setUsuimg("empty.jpg");
             }else{
             obj.setUsuimg(upload.getFiles().get(0));
             }

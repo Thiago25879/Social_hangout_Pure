@@ -50,7 +50,7 @@
                 <%
                     for (Convitegr item : listacongr) {
                 %>
-                <div class="col-md-4 w3_agileits_services_bottom_l_grid ">
+                <div class="col-md-4 w3_agileits_services_bottom_l_grid  center-webkit">
                     <div class="agile_services_bottom_l_grid1">
                         <img src="../../Fotos/<%=item.getGrucodigo().getGruimg()%>" alt=" " class="img-responsive rounded-div auto-height" />
                     </div>

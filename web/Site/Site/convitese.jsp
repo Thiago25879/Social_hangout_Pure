@@ -52,7 +52,7 @@
                 <%
                     for (Conviteev item : listaconev) {
                 %>
-                <div class="col-md-4 w3_agileits_services_bottom_l_grid ">
+                <div class="col-md-4 w3_agileits_services_bottom_l_grid  center-webkit">
                     <div class="agile_services_bottom_l_grid1">
                         <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " class="img-responsive rounded-div auto-height" />
                     </div>
@@ -60,7 +60,7 @@
                         <h4><%=item.getEvecodigo().getEvenome()%></h4>
                         <p>Grupo: <%=item.getEvecodigo().getGrucodigo().getGrunome()%></p>
                         <h4>
-                            <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=1&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-success">Vou</span></a>
+                            <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=1&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-success">&nbsp;&nbsp;&nbsp;Vou&nbsp;&nbsp;&nbsp;</span></a>
                             <%if(!item.getConevresposta().equals("talvez")){%>
                             <a href="convitese.jsp?code=<%=item.getConevcodigo()%>&action=2&group=<%=item.getEvecodigo().getGrucodigo().getGrucodigo()%>"><span class="label label-info">Talvez</span></a>
                             <%}%>

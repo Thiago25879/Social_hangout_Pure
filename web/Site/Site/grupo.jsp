@@ -154,7 +154,7 @@
 
 <div class="banner-bottom dark-background">
     <div class="container ">
-        <div class="smaller center-block">
+        <div class="smaller center-block align-center">
             <h3 class="title-w3-agileits two"><%=item2.getGrunome()%></h3>  
             <br>
             <a href="#" class="link" href="#" data-toggle="modal" data-target="#Modalgrupoopcoes"><img src="../../Fotos/<%=item2.getGruimg()%>" alt=" " class="center-block img-responsive img-circle" /></a>
@@ -172,12 +172,14 @@
                 <tr>
                     <td><%
                         for (Membro item : listamem) {
+                            if(item.getMemativo().equals(true)){
                         %>
                         <div class="clearfix vertical-center usr-icon ">
                             <img class="media-object dp1 img-circle img-responsive usr-icon auto-height" src="../../Fotos/<%=item.getUsucodigo().getUsuimg()%>" >
                             <h2 class="usr-names font-h2"><%=item.getUsucodigo().getUsunick()%></h2>
                         </div>
                         <%
+                            }
                             }%></td>
                 </tr>    
             </tbody>

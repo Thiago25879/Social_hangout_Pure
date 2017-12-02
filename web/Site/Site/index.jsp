@@ -24,7 +24,7 @@
         if (upload.formProcess(getServletContext(), request)) {
             obj.setGrunome(upload.getForm().get("txtNomegr").toString());
             if (upload.getFiles().size() != 1) {
-                obj.setGruimg("question.jpg");
+                obj.setGruimg("empty.jpg");
             } else {
                 obj.setGruimg(upload.getFiles().get(0));
             }
@@ -76,7 +76,7 @@
 
                 <div class="agile_gallery_grid ">
                     <a title="<%=item.getGrucodigo().getGrunome()%>" href="grupo.jsp?code=<%=item.getGrucodigo().getGrucodigo()%>">
-                        <div class="agile_gallery_grid1 auto-height">
+                        <div class="agile_gallery_grid1 auto-height center-webkit">
                             <img src="../../Fotos/<%=item.getGrucodigo().getGruimg()%>" alt=" " class="img-responsive img-circle img-custom" />
                             <div class="w3layouts_gallery_grid1_pos">
                                 <h3><%=item.getGrucodigo().getGrunome()%></h3>
@@ -103,7 +103,7 @@
                 %>
                 <div class="agile_gallery_grid ">
                     <a title="<%=item.getGrucodigo().getGrunome()%>" href="grupo.jsp?code=<%=item.getGrucodigo().getGrucodigo()%>">
-                        <div class="agile_gallery_grid1 auto-height">
+                        <div class="agile_gallery_grid1 auto-height center-webkit">
                             <img src="../../Fotos/<%=item.getGrucodigo().getGruimg()%>" alt=" " class="img-responsive img-circle img-custom" />
                             <div class="w3layouts_gallery_grid1_pos">
                                 <h3><%=item.getGrucodigo().getGrunome()%></h3>
@@ -130,7 +130,7 @@
 
                 <div class="agile_gallery_grid ">
                     <a title="<%=item.getGrucodigo().getGrunome()%>" href="grupo.jsp?code=<%=item.getGrucodigo().getGrucodigo()%>">
-                        <div class="agile_gallery_grid1 auto-height">
+                        <div class="agile_gallery_grid1 auto-height center-webkit">
                             <img src="../../Fotos/<%=item.getGrucodigo().getGruimg()%>" alt=" " class="img-responsive img-circle img-custom" />
                             <div class="w3layouts_gallery_grid1_pos">
                                 <h3><%=item.getGrucodigo().getGrunome()%></h3>

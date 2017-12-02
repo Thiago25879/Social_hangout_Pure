@@ -17,7 +17,7 @@
         if (upload.formProcess(getServletContext(), request)) {
             obj.setGrunome(upload.getForm().get("txtTitulo").toString());
             if (upload.getFiles().size() != 1) {
-                obj.setGruimg("question.jpg");
+                obj.setGruimg("empty.jpg");
             }else{
             obj.setGruimg(upload.getFiles().get(0));
             }

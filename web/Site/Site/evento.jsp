@@ -154,7 +154,7 @@
                 <div class="panel panel-default panel-custom">
                     <div class="panel-heading panel-heading-custom">
                         <h4 class="panel-title panel-title-custom">
-                            <a data-toggle="collapse" href="#collapse<%=item.getDeccodigo()%>"><%=item.getDectitulo()%></a>
+                            <a data-toggle="collapse" href="#collapse<%=item.getDeccodigo()%>" class="custom-decision"><%=item.getDectitulo()%></a>
                         </h4>
                     </div>
 

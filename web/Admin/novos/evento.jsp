@@ -24,7 +24,7 @@
             grupo.setGrucodigo(Integer.parseInt(upload.getForm().get("txtGrupo").toString()));
             obj.setGrucodigo(grupo);
             if (upload.getFiles().size() != 1) {
-                obj.setEveimg("question.jpg");
+                obj.setEveimg("empty.jpg");
             }else{
             obj.setEveimg(upload.getFiles().get(0));
             }
