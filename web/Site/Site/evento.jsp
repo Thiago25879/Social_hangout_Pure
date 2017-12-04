@@ -413,7 +413,7 @@
                                                     var limit = $(this).closest(".cada-decisao").data("limit");
                                                     if ($(this).closest(".cada-decisao").find(".cada-opcao:checked").length > limit) {
                                                         $(this).prop("checked", false);
-                                                        alert("Você só pode escolher " + limit + " opções !!!");
+                                                        //alert("Você só pode escolher " + limit + " opções !!!");
                                                     }
                                                 }
                                             });

@@ -4846,12 +4846,12 @@ input[type="checkbox"] + label span {
     height:19px;
     margin:-2px 10px 0 0;
     vertical-align:middle;
-    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -38px top no-repeat;
+    background:url('../../../Fotos/sheet.png') -38px top no-repeat;
     cursor:pointer;
 }
 
 input[type="checkbox"]:checked + label span {
-    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -57px top no-repeat;
+    background:url('../../../Fotos/sheet.png') -57px top no-repeat;
 }
 
 
