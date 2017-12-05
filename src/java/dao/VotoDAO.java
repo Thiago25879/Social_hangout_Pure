@@ -29,4 +29,8 @@ public class VotoDAO extends GenericDAO<Voto, Integer>{
         
         return em.createNamedQuery("Voto.findopcsFilter", Voto.class).setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getResultList();
     }
+    public List acharvotosnumList(Integer filtro, Integer filtro2) throws Exception{
+        
+        return em.createNamedQuery("Voto.findvotosnumFilter", Voto.class).setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getResultList();
+    }
 }

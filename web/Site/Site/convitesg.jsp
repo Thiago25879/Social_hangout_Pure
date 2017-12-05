@@ -36,7 +36,7 @@
     List<Convitegr> listacongr = new ArrayList<Convitegr>();
     listacongrall = congrdao.listar();
     for (Convitegr itemcon : listacongrall) {
-        if (itemcon.getUsucodigo().getUsucodigo() == usuario.getUsucodigo() && itemcon.getCongrresposta() != "sim" && itemcon.getCongrresposta() != "nao") {
+        if (itemcon.getUsucodigo().getUsucodigo() == usuario.getUsucodigo() && itemcon.getCongrresposta() == "pendente") {
             listacongr.add(itemcon);
         }
     }

@@ -34,6 +34,7 @@
     List<Conviteev> listaconviteev;
     listaconviteev = cdao.listarporeveid(evento.getEvecodigo());
     String msg = "";
+    membro = (Membro) mdao.acharmembroList(usuario.getUsucodigo(), evento.getGrucodigo().getGrucodigo()).get(0);
 
     if (request.getMethod().equals("POST")) {
         if (upload.formProcess(getServletContext(), request)) {
@@ -143,7 +144,7 @@
 
         <div class="smaller center-block ">
             <h3 class="title-w3-agileits two size-down">Decisões</h3>
-            <p class="quia shadow"><a class="link" href="#" data-toggle="modal" data-target="#Modalnovadecisao " >Decisões</a></p>
+            <p class="quia shadow"><a class="link" href="#" data-toggle="modal" data-target="#Modalnovadecisao " >Nova Decisão</a></p>
         </div>
         <br>
         <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
@@ -162,7 +163,7 @@
                         <ul class="list-group list-group-custom">
                             <li class="list-group-item list-custom center-pad bold"><span><%=item.getDecdesc()%> - Votos: <%=item.getDecnumvotos()%></span></li>
                                 <%for (Opcao itemopc : listaopc) {%>
-                            <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom cada-opcao" name="<%=itemopc.getOpccodigo()%>" id="<%=itemopc.getOpccodigo()%>" value="<%=itemopc.getOpccodigo()%>" <%if (!vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).isEmpty()) {%> checked <%}%>/><label for="<%=itemopc.getOpccodigo()%>"><span></span>Total: <%=vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).size()%> - <%=itemopc.getOpcnome()%></label></li>
+                            <li class="list-group-item list-custom"><input type="checkbox" class="radio_custom cada-opcao" name="<%=itemopc.getOpccodigo()%>" id="<%=itemopc.getOpccodigo()%>" value="<%=itemopc.getOpccodigo()%>" <%if (!vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).isEmpty()) {%> checked <%}%>/><label for="<%=itemopc.getOpccodigo()%>"><span></span>Total: <%=vdao.acharvotosnumList(item.getDeccodigo(), itemopc.getOpccodigo()).size()%> - <%=itemopc.getOpcnome()%></label></li>
                                         <%}%>
                         </ul>
                         <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>
