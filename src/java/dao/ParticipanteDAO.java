@@ -30,5 +30,8 @@ public class ParticipanteDAO extends GenericDAO<Participante, Integer>{
         
         return (Participante) em.createNamedQuery("Participante.findidFilter").setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getSingleResult();
     }
-    
+    public List<Participante> acharparticipantelist(Integer filtro, Integer filtro2) throws Exception{
+        
+        return  em.createNamedQuery("Participante.findidFilter").setParameter("filtro" , filtro ).setParameter("filtro2", filtro2).getResultList();
+    }
 }
