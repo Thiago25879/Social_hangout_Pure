@@ -178,12 +178,12 @@
                         <ul class="list-group list-group-custom">
                             <li class="list-group-item list-custom center-pad bold"><span><%=item.getDecdesc()%> - Votos: <%=item.getDecnumvotos()%></span></li>
                                 <%for (Opcao itemopc : listaopc) {%>
-                            <li class="list-group-item list-custom"><input type="checkbox" <%if(!estaParticipando == true){%> disabled <%}%> class="radio_custom cada-opcao" name="<%=itemopc.getOpccodigo()%>" id="<%=itemopc.getOpccodigo()%>" value="<%=itemopc.getOpccodigo()%>" <%if (!vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).isEmpty()) {%> checked <%}%>/><label for="<%=itemopc.getOpccodigo()%>"><span></span>Total: <%=vdao.acharvotosnumList(item.getDeccodigo(), itemopc.getOpccodigo()).size()%> - <%=itemopc.getOpcnome()%></label></li>
+                            <li class="list-group-item list-custom"><input type="checkbox" <%if(!estaParticipando == true){%> disabled <%}%> class="radio_custom cada-opcao" name="<%=itemopc.getOpccodigo()%>" id="<%=itemopc.getOpccodigo()%>" value="<%=itemopc.getOpccodigo()%>" <%if (!vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).isEmpty()) {%> checked <%}%>/><label for="<%=itemopc.getOpccodigo()%>"><%if(estaParticipando == true){%><span></span><%}%>Total: <%=vdao.acharvotosnumList(item.getDeccodigo(), itemopc.getOpccodigo()).size()%> - <%=itemopc.getOpcnome()%></label></li>
                                         <%}%>
                         </ul>
-                        <%if(estaParticipando == true){%>
+                        <% if(estaParticipando == true){%>
                         <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>
-                        <%}%>
+                        <% } %>
                     </div>
                 </div>
             </div>
