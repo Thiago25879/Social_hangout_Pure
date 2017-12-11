@@ -39,6 +39,7 @@
                 <thead>
                     <tr>
                         <th>Código</th>
+                        <th>Criador</th>
                         <th>Evento</th>
                         <th>Membro</th>
                         <th>Opções</th>
@@ -47,6 +48,7 @@
                 <tfoot>
                     <tr>
                         <th>Código</th>
+                        <th>Criador</th>
                         <th>Evento</th>
                         <th>Membro</th>
                         <th>Opções</th>
@@ -58,6 +60,7 @@
                     %>
                     <tr>        
                         <td><%=item.getParcodigo()%></td>
+                        <td><%=item.getParadmin().toString()%></td>
                         <td><%=item.getEvecodigo().getEvenome()%></td>
                         <td><%=item.getMemcodigo().getUsucodigo().getUsunick()%></td>
                         <td><a href="../edicoes/participante.jsp?codigo=<%=item.getParcodigo()%>" class="btn  btn-primary btn-sm">Editar</a>

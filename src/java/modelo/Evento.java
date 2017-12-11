@@ -45,6 +45,8 @@ public class Evento implements Serializable {
     private String eveimg;
     @Column(name = "evenome")
     private String evenome;
+    @Column(name = "eveaberto")
+    private Boolean eveaberto;
     @JoinColumn(name = "grucodigo", referencedColumnName = "grucodigo")
     @ManyToOne
     private Grupo grucodigo;
@@ -76,6 +78,14 @@ public class Evento implements Serializable {
 
     public void setEvedesc(String evedesc) {
         this.evedesc = evedesc;
+    }
+
+    public Boolean getEveaberto() {
+        return eveaberto;
+    }
+
+    public void setEveaberto(Boolean eveaberto) {
+        this.eveaberto = eveaberto;
     }
 
     public String getEveimg() {

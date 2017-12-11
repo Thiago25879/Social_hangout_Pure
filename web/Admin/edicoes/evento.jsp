@@ -20,6 +20,11 @@
             obj.setEvecodigo(Integer.parseInt(upload.getForm().get("txtCodigo").toString()));
             obj.setEvenome(upload.getForm().get("txtNome").toString());
             obj.setEvedesc(upload.getForm().get("txtDescricao").toString());
+            if(upload.getForm().get("txtAberto") == null){
+                obj.setEveaberto(false);
+            }else{
+                obj.setEveaberto(true);
+            }
 
             Grupo grupo = new Grupo();
             grupo.setGrucodigo(Integer.parseInt(upload.getForm().get("txtGrupo").toString()));
@@ -97,6 +102,11 @@
             <div class="form-group">
                 <label>Descrição do evento</label>
                 <input class="form-control" type="text" name="txtDescricao" required value="<%=obj.getEvedesc()%>"/>
+            </div>
+            
+            <div class="form-group">
+                <label>Evento está aberto</label>
+                <input class="form-control" type="checkbox" name="txtAberto" value="true" <%if(obj.getEveaberto()== true){%> checked <%}%>/>
             </div>
 
             <div class="form-group">

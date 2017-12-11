@@ -1,4 +1,6 @@
 
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Collections"%>
 <%@page import="dao.VotoDAO"%>
 <%@page import="modelo.Voto"%>
 <%@page import="util.Upload"%>
@@ -14,7 +16,8 @@
 <%@page import="modelo.Evento"%>
 <!-- Mostrar status de convites, mostrar decisões e opções -->
 <%@include file="padroes/cabecalho.jsp" %>
-<%    Upload upload = new Upload();
+<%    
+    Upload upload = new Upload();
     upload.setFolderUpload("Fotos");
 
     Boolean estaParticipando = false;
@@ -29,6 +32,8 @@
     Membro membro = new Membro();
     OpcaoDAO odao = new OpcaoDAO();
     ParticipanteDAO pdao = new ParticipanteDAO();
+    Participante participante = new Participante();
+    participante = pdao.acharparticipantelist(usuario.getUsucodigo(), evento.getEvecodigo()).get(0);
     ConviteevDAO cdao = new ConviteevDAO();
     Conviteev conviteev = new Conviteev();
     VotoDAO vdao = new VotoDAO();
@@ -85,6 +90,7 @@
                     decisao = ddao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("txtId")));
                     opcao.setDeccodigo(decisao);
                     opcao.setParcodigo(pdao.acharparticipante(usuario.getUsucodigo(), evento.getEvecodigo()));
+                    opcao.setOpcvotosnum(0);
                     odao.incluir(opcao);
                     msg = "Nova opção adicionada";
                                     %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
@@ -126,16 +132,35 @@
                                     }
                                 }
                             }
+                            
+                                for (Decisao item : listadec) {
+                                listaopc = odao.listarpordeccid(item.getDeccodigo());
+                                for (Opcao itemopc : listaopc) {
+                                    itemopc.setOpcvotosnum(vdao.acharvotosnumList(item.getDeccodigo(), itemopc.getOpccodigo()).size());
+                                    odao.alterar(itemopc);
+                                }
+                            }
+
                             msg = "Votos submetidos";
                                     %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
                         } else {
-                            //Nope nope nope
+                                if (request.getParameter("Id").equals("finalizar")) {
+                                        
+                                        evento.setEveaberto(false);
+                                        edao.alterar(evento);
+                                        msg = "Votação fechada";
+                                        %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><%
+                                            
+                                } else {
+                                msg = "Algo deu errado, contate um administrador";
+                                %><a id='mod' data-toggle="modal" data-target="#Modal-msg"></a><% 
+                                }
+                            }
                         }
                     }
                 }
             }
         }
-    }
 
 %>
 
@@ -157,7 +182,7 @@
 
         <div class="smaller center-block ">
             <h3 class="title-w3-agileits two size-down">Decisões</h3>
-            <%if(estaParticipando == true){%>
+            <%if(estaParticipando == true && evento.getEveaberto().equals(true)){%>
             <p class="quia shadow"><a class="link" href="#" data-toggle="modal" data-target="#Modalnovadecisao " >Nova Decisão</a></p>
             <%}%>
         </div>
@@ -177,18 +202,25 @@
                     <div id="collapse<%=item.getDeccodigo()%>" class="panel-collapse collapse panel-collapse-custom cada-decisao" data-limit="<%=item.getDecnumvotos()%>" >
                         <ul class="list-group list-group-custom">
                             <li class="list-group-item list-custom center-pad bold"><span><%=item.getDecdesc()%> - Votos: <%=item.getDecnumvotos()%></span></li>
-                                <%for (Opcao itemopc : listaopc) {%>
-                            <li class="list-group-item list-custom"><input type="checkbox" <%if(!estaParticipando == true){%> disabled <%}%> class="radio_custom cada-opcao" name="<%=itemopc.getOpccodigo()%>" id="<%=itemopc.getOpccodigo()%>" value="<%=itemopc.getOpccodigo()%>" <%if (!vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).isEmpty()) {%> checked <%}%>/><label for="<%=itemopc.getOpccodigo()%>"><%if(estaParticipando == true){%><span></span><%}%>Total: <%=vdao.acharvotosnumList(item.getDeccodigo(), itemopc.getOpccodigo()).size()%> - <%=itemopc.getOpcnome()%></label></li>
+                            <% if(evento.getEveaberto().equals(false)){ 
+                                Collections.sort(listaopc, new Comparator<Opcao>() {
+                                public int compare(Opcao o1, Opcao o2) {
+                                    return o2.getOpcvotosnum().compareTo(o1.getOpcvotosnum());
+                                }
+                            }); 
+                            }
+                                    for (Opcao itemopc : listaopc) {%>
+                            <li class="list-group-item list-custom"><input type="checkbox" <%if(!estaParticipando == true && evento.getEveaberto().equals(false)){%> disabled <%}%> class="radio_custom cada-opcao" name="<%=itemopc.getOpccodigo()%>" id="<%=itemopc.getOpccodigo()%>" value="<%=itemopc.getOpccodigo()%>" <%if (!vdao.acharvotoList(item.getDeccodigo(), membro.getMemcodigo(), itemopc.getOpccodigo()).isEmpty()) {%> checked <%}%>/><label for="<%=itemopc.getOpccodigo()%>"><%if(estaParticipando == true && evento.getEveaberto().equals(true)){%><span></span><%}%>Total: <%=itemopc.getOpcvotosnum()%> - <%=itemopc.getOpcnome()%></label></li>
                                         <%}%>
                         </ul>
-                        <% if(estaParticipando == true){%>
+                        <% if(estaParticipando == true && evento.getEveaberto().equals(true)){%>
                         <div class="panel-footer panel-footer-custom"><a class="link white abrir-novaOpcaoModal" onclick="setOptionId(<%=item.getDeccodigo()%>)" id="openModalButton" href="#" data-toggle="modal" data-target="#Modalnovaopcao " > <i class="fa fa-plus-square-o" aria-hidden="true"></i> Nova Opção</a></div>
                         <% } %>
                     </div>
                 </div>
             </div>
             <%}%>
-            <%if(estaParticipando == true){%>
+            <%if(estaParticipando == true && evento.getEveaberto().equals(true)){%>
             <input type="hidden" value="submetevotos" name="Id"/>
             <button class="btn btn-default custom-btn font-bigger center-block" type="submit">Submeter votos</button>
             <%}%>
@@ -289,16 +321,27 @@
                                     </div>
                                 </div>
                             </form>
+                            <%if(participante.getParadmin().equals(false)){%>
                             <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
                                 <div class="field-wrap">
                                     <div class="col-md-6">
-                                        <button type="submit" class="button button-block" />Cancelar     presença</button>z
+                                        <button type="submit" class="button button-block" />Cancelar     presença</button>
                                         <input type="hidden" value="sair" name="Id"/>
                                     </div>
                                 </div>
 
-                            </form>
+                            </form>    
+                            <%}else{%>
+                            <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
+                                <div class="field-wrap">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="button button-block" />Finalizar  <br/>   votação</button>
+                                        <input type="hidden" value="finalizar" name="Id"/>
+                                    </div>
+                                </div>
 
+                            </form>
+                            <%}%>    
                         </div>
 
                     </div>

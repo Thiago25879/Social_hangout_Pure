@@ -20,6 +20,7 @@
                 conv.setConevresposta("vou");
                 part.setEvecodigo(edao.buscarPorChavePrimaria(conv.getEvecodigo().getEvecodigo()));
                 part.setMemcodigo(mdao.acharmembro(usuario.getUsucodigo(),Integer.parseInt(request.getParameter("group"))));
+                part.setParadmin(false);
                 pdao.incluir(part);
                 break;
             case 2:

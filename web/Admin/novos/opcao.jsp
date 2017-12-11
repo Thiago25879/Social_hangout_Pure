@@ -18,6 +18,7 @@
     if (request.getMethod().equals("POST")) {
         OpcaoDAO dao = new OpcaoDAO();
         obj.setOpcnome(request.getParameter("txtNome"));
+        obj.setOpcvotosnum(Integer.parseInt(request.getParameter("txtVotosnum")));
         Decisao decisao = new Decisao();
         decisao.setDeccodigo(Integer.parseInt(request.getParameter("txtDecisao")));
         obj.setDeccodigo(decisao);
@@ -50,6 +51,11 @@
         <div class="form-group">
             <label>Nome da opção</label>
             <input class="form-control" type="text" name="txtNome" required />
+        </div>
+        
+        <div class="form-group">
+            <label>Número de votos</label>
+            <input class="form-control" type="number" name="txtVotosnum" required />
         </div>
 
         <div class="form-group">

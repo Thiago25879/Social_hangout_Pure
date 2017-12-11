@@ -40,6 +40,7 @@
                     <tr>
                         <th>Código</th>
                         <th>Nome</th>
+                        <th>Votos</th>
                         <th>Decisão</th>
                         <th>Participante</th>
                         <th>Opções</th>
@@ -49,6 +50,7 @@
                     <tr>
                         <th>Código</th>
                         <th>Nome</th>
+                        <th>Votos</th>
                         <th>Decisão</th>
                         <th>Participante</th>
                         <th>Opções</th>
@@ -61,6 +63,7 @@
                     <tr>        
                         <td><%=item.getOpccodigo()%></td>
                         <td><%=item.getOpcnome()%></td>
+                        <td><%=item.getOpcvotosnum()%></td>
                         <td><%=item.getDeccodigo().getDectitulo()%></td>
                         <td><%=item.getParcodigo().getMemcodigo().getUsucodigo().getUsunick()%></td>
                         <td><a href="../edicoes/opcao.jsp?codigo=<%=item.getOpccodigo()%>" class="btn  btn-primary btn-sm">Editar</a>

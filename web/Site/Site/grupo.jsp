@@ -32,6 +32,7 @@
                 EventoDAO edao = new EventoDAO();
                 obj.setEvenome(upload.getForm().get("txtNomeev").toString());
                 obj.setEvedesc(upload.getForm().get("txtDescev").toString());
+                obj.setEveaberto(true);
                 obj.setGrucodigo(item2);
                 System.out.println(upload.getFiles().size());
                 if (upload.getFiles().size() != 1) {
@@ -54,8 +55,9 @@
                     Conviteev conev = new Conviteev();
                     part.setEvecodigo(obj);
                     part.setMemcodigo(mdao.acharmembro(usuario.getUsucodigo(), item2.getGrucodigo()));
+                    part.setParadmin(true);
                     pdao.incluir(part);
-
+                    
                     List<Membro> mlist = mdao.achargrmembroList(item2.getGrucodigo());
                     for (Membro item : mlist) {
                         if(item.getMemativo()==true){

@@ -42,6 +42,8 @@ public class Participante implements Serializable {
     private Integer parcodigo;
     @OneToMany(mappedBy = "parcodigo")
     private List<Opcao> opcaoList;
+    @Column(name = "paradmin")
+    private Boolean paradmin;
     @JoinColumn(name = "evecodigo", referencedColumnName = "evecodigo")
     @ManyToOne
     private Evento evecodigo;
@@ -78,6 +80,14 @@ public class Participante implements Serializable {
 
     public void setEvecodigo(Evento evecodigo) {
         this.evecodigo = evecodigo;
+    }
+
+    public Boolean getParadmin() {
+        return paradmin;
+    }
+
+    public void setParadmin(Boolean paradmin) {
+        this.paradmin = paradmin;
     }
 
     public Membro getMemcodigo() {

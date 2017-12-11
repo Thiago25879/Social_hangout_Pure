@@ -22,6 +22,12 @@
     Participante obj = new Participante();
     if (request.getMethod().equals("POST")) {
         ParticipanteDAO dao = new ParticipanteDAO();
+        
+        if(request.getParameter("txtAdmin") == null){
+            obj.setParadmin(false);
+        }else{
+            obj.setParadmin(true);
+        }
 
         obj.setParcodigo(Integer.parseInt(request.getParameter("txtCodigo")));
         Membro membro = new Membro();
@@ -104,6 +110,11 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label>Criador do evento</label>
+                <input class="form-control" type="checkbox" name="txtAdmin" value="true" <%if(obj.getParadmin()== true){%> checked <%}%>/>
+            </div>
+                    
             <button class="btn btn-primary btn-sm" type="submit">Salvar</button>
 
         </div>    

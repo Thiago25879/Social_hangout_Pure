@@ -41,6 +41,7 @@
                         <th>Código</th>
                         <th>Nome</th>
                         <th>Descrição</th>
+                        <th>Aberto</th>
                         <th>Imagem</th>
                         <th>Grupo</th>
                         <th>Opções</th>
@@ -51,6 +52,7 @@
                         <th>Código</th>
                         <th>Nome</th>
                         <th>Descrição</th>
+                        <th>Aberto</th>
                         <th>Imagem</th>
                         <th>Grupo</th>
                         <th>Opções</th>
@@ -64,6 +66,7 @@
                         <td><%=item.getEvecodigo()%></td>
                         <td><%=item.getEvenome()%></td>
                         <td><%=item.getEvedesc()%></td>
+                        <td><%=item.getEveaberto().toString()%></td>
                         <td><%=item.getEveimg()%></td>
                         <td><%=item.getGrucodigo().getGrunome()%></td>
                         <td><a href="../edicoes/evento.jsp?codigo=<%=item.getEvecodigo()%>" class="btn  btn-primary btn-sm">Editar</a>
