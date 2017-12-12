@@ -38,7 +38,7 @@
     List<Conviteev> listaconev = new ArrayList<>();
     listaconevall = conevdao.listar();
     for (Conviteev itemcon : listaconevall) {
-        if (itemcon.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo() && itemcon.getConevresposta() != "vou" && itemcon.getConevresposta() != "nao" && itemcon.getMemcodigo().getMemativo() == true) {
+        if (itemcon.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo() && !itemcon.getConevresposta().equals("vou") && !itemcon.getConevresposta().equals("nao") && itemcon.getMemcodigo().getMemativo() == true) {
             listaconev.add(itemcon);
         }
     }

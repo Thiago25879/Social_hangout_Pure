@@ -35,36 +35,6 @@
                     <% }
                         } %>
                     <%for (Conviteev item : listaconv) {
-                            if (item.getConevresposta().equals("pendente") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
-                    %>
-                    <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
-                        <div class="agile_services_bottom_l_grid1">
-                            <a href="evento.jsp?code=<%=item.getEvecodigo().getEvecodigo()%>">
-                                <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " style="border:5px solid white" class="img-responsive auto-height auto-width" />
-                                <div class="w3_service_bottom_grid_pos mid_gd small-padding">
-                                    <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <% }
-                        } %>
-                    <%for (Conviteev item : listaconv) {
-                            if (item.getConevresposta().equals("talvez") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
-                    %>
-                    <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">
-                        <div class="agile_services_bottom_l_grid1">
-                            <a href="evento.jsp?code=<%=item.getEvecodigo().getEvecodigo()%>">
-                                <img src="../../Fotos/<%=item.getEvecodigo().getEveimg()%>" alt=" " style="border:5px solid lightblue" class="img-responsive auto-height auto-width" />
-                                <div class="w3_service_bottom_grid_pos mid_gd small-padding">
-                                    <h3 class="shadow" ><%=item.getEvecodigo().getEvenome()%></h3>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <% }
-                        } %>
-                    <%for (Conviteev item : listaconv) {
                             if (item.getConevresposta().equals("nao") && item.getMemcodigo().getUsucodigo().getUsucodigo() == usuario.getUsucodigo()) {
                     %>
                     <div class="col-md-3 agile-w3l3-grids w3_agileits_services_bottom_l_grid w3l-agileits">

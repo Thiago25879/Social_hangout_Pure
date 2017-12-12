@@ -169,7 +169,8 @@
         <div class="smaller center-block  center-webkit">
             <h3 class="title-w3-agileits two"><%=evento.getEvenome()%></h3>  
             <br>
-            <a href="#" class="link" data-toggle="modal" data-target="#Modaleventoopcoes"><img src="../../Fotos/<%=evento.getEveimg()%>" alt=" " class="center-block img-responsive img-circle display-default" /></a>
+            <%if(estaParticipando == true){%>
+            <a href="#" class="link" data-toggle="modal" data-target="#Modaleventoopcoes"><%}%><img src="../../Fotos/<%=evento.getEveimg()%>" alt=" " class="center-block img-responsive img-circle display-default" /><%if(estaParticipando == true){%></a><%}%>
         </div>
         <div class="center-pad">
             <h4 class="white"><%=evento.getEvedesc()%></h4>
@@ -316,7 +317,11 @@
                             <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
                                 <div class="field-wrap">
                                     <input type="hidden" value="opcoes" name="Id"/>
+                                    <%if(evento.getEveaberto().equals(true)){%>
                                     <div class="col-md-6">
+                                    <%}else{%>
+                                    <div class="col-md-12">
+                                    <%}%>
                                         <a href="#"  data-toggle="modal" data-target="#Modaleditarevento"><button type="submit" class="button button-block" data-dismiss="modal" />Editar <br/> Evento</button></a>
                                     </div>
                                 </div>
@@ -331,7 +336,8 @@
                                 </div>
 
                             </form>    
-                            <%}else{%>
+                            <%}else{
+                            if(evento.getEveaberto().equals(true)){%>
                             <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
                                 <div class="field-wrap">
                                     <div class="col-md-6">
@@ -341,7 +347,7 @@
                                 </div>
 
                             </form>
-                            <%}%>    
+                            <%}}%>    
                         </div>
 
                     </div>
