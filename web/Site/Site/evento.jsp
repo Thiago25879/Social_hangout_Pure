@@ -317,7 +317,7 @@
                             <form action="evento.jsp?code=<%=(request.getParameter("code"))%>" method="post">
                                 <div class="field-wrap">
                                     <input type="hidden" value="opcoes" name="Id"/>
-                                    <%if(evento.getEveaberto().equals(true)){%>
+                                    <%if(evento.getEveaberto().equals(true) || participante.getParadmin().equals(false)){%>
                                     <div class="col-md-6">
                                     <%}else{%>
                                     <div class="col-md-12">
